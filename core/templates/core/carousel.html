@@ -1,0 +1,422 @@
+
+
+{% load static %}
+
+{% block content %}
+
+<style>
+
+  .watch {
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .watch:hover {
+    background: linear-gradient(90deg, #feb47b, #ff7e5f);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    color: black;
+  }
+  
+  {% comment %} .watch:active {
+    transform: translateY(2px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  } {% endcomment %}
+  
+  .btns {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .carousel-caption {
+    padding: 10px;
+    border-radius: 15px;
+    max-width: 630px;
+    max-height: 400px; 
+    {% comment %} margin: auto; {% endcomment %}
+    text-align: left;
+    color: white; 
+  }
+  
+  
+  .carousel-caption .content h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 15px;
+  }
+  
+  .carousel-caption .content p {
+    font-size: 1.0rem;
+    font-weight: bold;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    width: auto;
+    font-family: Georgia;
+  }
+  
+   .carousel-caption .details h6 {
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 1.2px;
+    margin-bottom: 10px;
+  } 
+  
+  .carousel-caption .details h5,
+  .carousel-caption .details h4,
+  .carousel-caption .details h3 {
+    font-size: 1.0rem;
+    font-weight: 300;
+    margin-bottom: 5px;
+  }
+  
+
+  
+  {% comment %} .carousel-caption:hover {
+    background: rgb(0, 0, 0, 0.2);
+  } {% endcomment %}
+
+  #rates {
+    background: yellow;
+    color: black;
+  }
+
+
+
+  .details #MVO {
+    color: red;
+  }
+  
+  
+@media (max-width: 768px) {
+  .carousel-caption {
+    max-width: 90%; 
+    padding: 15px; 
+  }
+
+  .carousel-caption .content h1 {
+    font-size: 1.8rem; 
+  }
+
+  .carousel-caption .content p {
+    font-size: 1rem; 
+  }
+
+  .carousel-caption .details h5,
+  .carousel-caption .details h4,
+  .carousel-caption .details h3 {
+    font-size: 1rem; 
+  }
+
+  .carousel-caption .watch {
+    font-size: 0.9rem; 
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-caption {
+    max-width: 100%; 
+    padding: 10px; 
+    word-wrap: break-word;
+    overflow: auto;
+  }
+
+  .carousel-caption .content h1 {
+    font-size: 1.0rem; 
+  }
+
+  .carousel-caption .content p {
+    font-size: 0.9rem; 
+  }
+
+  .carousel-caption .details h6{
+    font-size: 0.8rem;
+  }
+
+  .carousel-caption .details h5,
+  .carousel-caption .details h4,
+  .carousel-caption .details h3 {
+    font-size: 0.7rem; 
+  }
+
+  .carousel-caption .watch {
+    font-size: 0.8rem; 
+    padding: 8px 16px; 
+  }
+}
+  
+  
+
+</style>
+
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <a href="">
+        <img src="{% static "core/image/Hollywood/deadpool banner.jpeg" %}" class="d-block w-100" alt="..." height="500px">
+        </a>
+        <div class="carousel-caption">
+          <div class="content">
+            <h1 id="title">Deadpool & Wolverine</h1>
+            <p>
+              Deadpool's peaceful existence comes crashing down when the Time Variance
+              Authority recruits him to help safeguard the multiverse.
+            </p>
+            <div class="details">
+              <h6><span id="MVO">M</span>ovie <span id="MVO">V</span>ista <span id="MVO">O</span>riginal</h6>
+              <h5 id="gen">Action</h5>
+              <h4 id="years">2024</h4>
+              <h3>
+                <span id="rates">IMDB</span> 7.8 <i class="fa-solid fa-star"></i></h3>
+            </div>
+            <a href="#" class="btns">
+              <button type="button" class="watch">Watch Now</button>
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="carousel-item">
+        <a href="">
+          <img src="{% static "core/image/Hollywood//rrr.jpg" %}" class="d-block w-100" alt="..." height="500px">
+          </a>
+          <div class="carousel-caption">
+            <div class="content">
+              <h1 id="title">RRR</h1>
+                <p>A fearless revolutionary and an officer in the British force, who once shared a deep bond, decide to join forces and chart out an inspirational path of freedom against the despotic rulers.</p>
+                <div class="details">
+                  <h6><span id="MVO">M</span>ovie <span id="MVO">V</span>ista <span id="MVO">O</span>riginal</h6>
+                  <h5 id="gen">Action</h5>
+                  <h4 id="years">2022</h4>
+                  <h3><span id="rates">IMDB</span> 7.8 <i class="fa-solid fa-star"></i></h3>
+              </div>
+            </div>
+            <a href="" class="btns">
+            <button type="button" class="watch">Watch Now</button>
+          </a>
+          </div>
+      </div>
+
+
+      <div class="carousel-item">
+        <a href="">
+          <img src="{% static "core/image/Hollywood/assassination-nation.webp" %}" class="d-block w-100" alt="..." height="500px">
+          </a>
+          <div class="carousel-caption">
+            <div class="content">
+                <h1 id="title">Assassination Nation</h1>
+                <p>In Salem, USA, four friends fight to survive after a malicious hacker exposes everyone's secrets on the internet, causing their town to descend into chaos.</p>
+              <div class="details">
+                <h6><span id="MVO">M</span>ovie <span id="MVO">V</span>ista <span id="MVO">O</span>riginal</h6>
+                <h5 id="gen">Crime</h5>
+                <h4 id="years">2018</h4>
+                  <h3><span id="rates">IMDB</span> 6.0 <i class="fa-solid fa-star"></i></h3>
+                </div>
+              </div>
+              <a href="" class="btns">
+                <button type="button" class="watch">Watch Now</button>
+              </a>
+            </div>
+          </div>
+
+
+      <div class="carousel-item">
+        <a href="">
+          <img src="{% static "core/image/Hollywood/aquaman.jpg" %}" class="d-block w-100" alt="..." height="500px">
+        </a>
+        <div class="carousel-caption">
+          <div class="content">
+            <h1 id="title">Aquaman</h1>
+            <p>Half-human, half-Atlantean Arthur Curry must take his rightful place as the king of Atlantis and prevent a large-scale conflict from breaking out between the underwater kingdom and the surface world.
+            </p>
+              <div class="details">
+                <h6><span id="MVO">M</span>ovie <span id="MVO">V</span>ista <span id="MVO">O</span>riginal</h6>
+                <h5 id="gen">Adventure</h5>
+                  <h4 id="years">2018</h4>
+                  <h3><span id="rates">IMDB</span> 6.8 <i class="fa-solid fa-star"></i></h3>
+                </div>
+            </div>
+            <a href="" class="btns">
+              <button type="button" class="watch">Watch Now</button>
+            </a>
+          </div>
+      </div>
+      
+      
+      <div class="carousel-item">
+        <a href="">
+          <img src="{% static "core/image/Hollywood/Ghostbusters.jpeg" %}" class="d-block w-100" alt="..." height="500px">
+          </a>
+          <div class="carousel-caption">
+            <div class="content">
+              <h1 id="title">Ghostbusters: Frozen Empire</h1>
+              <p>The Spengler family returns to the iconic New York City firehouse where the original Ghostbusters have taken ghost-busting to the next level. When the discovery of an ancient artifact unleashes an evil force, Ghostbusters new and old must unite to protect their home and save the world from a second ice age.</p>
+              <div class="details">
+                <h6><span id="MVO">M</span>ovie <span id="MVO">V</span>ista <span id="MVO">O</span>riginal</h6>
+                  <h5 id="gen">Comedy</h5>
+                  <h4 id="years">2024</h4>
+                  <h3><span id="rates">IMDB</span> 6.1 <i class="fa-solid fa-star"></i></h3>
+                </div>
+            </div>
+            <a href="" class="btns">
+            <button type="button" class="watch">Watch Now</button>
+            </a>
+          </div>
+      </div>
+
+
+      <div class="carousel-item">
+        <a href="">
+          <img src="{% static "core/image/Hollywood/mortal-kombat.jpg" %}" class="d-block w-100" alt="..." height="500px">
+        </a>
+        <div class="carousel-caption">
+          <div class="content">
+            <h1 id="title">Mortal Kombat</h1>
+            <p>Cole Young, a washed-up MMA fighter, is chosen to join a team of champions in a high-stakes battle to prevent the Earth from being taken over by Outworld.</p>
+            <div class="details">
+              <h6><span id="MVO">M</span>ovie <span id="MVO">V</span>ista <span id="MVO">O</span>riginal</h6>
+              <h5 id="gen">Fantasy</h5>
+                  <h4 id="years">2021</h4>
+                  <h3><span id="rates">IMDB</span> 6.1 <i class="fa-solid fa-star"></i></h3>
+                </div>
+              </div>
+            <a href="" class="btns">
+            <button type="button" class="watch">Watch Now</button>
+            </a>
+          </div>
+        </div>
+
+        
+        <div class="carousel-item">
+          <a href="">
+            <img src="{% static "core/image/Hollywood/Hanuman.jpg" %}" class="d-block w-100" alt="..." height="500px">
+          </a>
+          <div class="carousel-caption">
+            <div class="content">
+              <h1 id="title">Hanuman</h1>
+                <p>In the tranquil village of Anjanadri, a petty thief stumbles upon Hanuman-like abilities. With the impending threats, he rises to become the hero they need.</p>
+                <div class="details">
+                  <h6><span id="MVO">M</span>ovie <span id="MVO">V</span>ista <span id="MVO">O</span>riginal</h6>
+                  <h5 id="gen">Adventure </h5>
+                  <h4 id="years">2024</h4>
+                  <h3><span id="rates">IMDB</span> 7.8 <i class="fa-solid fa-star"></i></h3>
+              </div>
+            </div>
+            <a href="" class="btns">
+            <button type="button" class="watch">Watch Now</button>
+          </a>
+          </div>
+        </div>
+        
+
+      <div class="carousel-item">
+        <a href="">
+          <img src="{% static "core/image/Hollywood/pushpa.jpg" %}" class="d-block w-100" alt="..." height="500px">
+        </a>
+        <div class="carousel-caption">
+          <div class="content">
+            <h1 id="title">Pushpa: The Rise</h1>
+            <p>A labourer named Pushpa makes enemies as he rises in the world of red sandalwood smuggling. However, violence erupts when the police attempt to bring down his illegal business.</p>
+            <div class="details">
+              <h6><span id="MVO">M</span>ovie <span id="MVO">V</span>ista <span id="MVO">O</span>riginal</h6>
+              <h5 id="gen">Thriller</h5>
+                  <h4 id="years">2021</h4>
+                  <h3><span id="rates">IMDB</span> 7.6 <i class="fa-solid fa-star"></i></h3>
+              </div>
+            </div>
+            <a href="" class="btns">
+              <button type="button" class="watch">Watch Now</button>
+            </a>
+          </div>
+        </div>
+
+
+        <div class="carousel-item">
+          <a href="">
+            <img src="{% static "core/image/Hollywood/Tomb Raider.jpg" %}" class="d-block w-100" alt="..." height="500px">
+          </a>
+          <div class="carousel-caption">
+            <div class="content">
+              <h1 id="title">Tomb Raider</h1>
+              <p>Lara Croft, a courageous and independent young woman, sets out on a dangerous journey to unravel the truth behind her adventurer father's mysterious disappearance.</p>
+              <div class="details">
+                <h6><span id="MVO">M</span>ovie <span id="MVO">V</span>ista <span id="MVO">O</span>riginal</h6>
+                  <h5 id="gen">Adventure</h5>
+                  <h4 id="years">2024</h4>
+                  <h3><span id="rates">IMDB</span> 6.3 <i class="fa-solid fa-star"></i></h3>
+                </div>
+              </div>
+              <a href="" class="btns">
+                <button type="button" class="watch">Watch Now</button>
+              </a>
+            </div>
+          </div>
+
+          
+          <div class="carousel-item">
+            <a href="">
+              <img src="{% static "core/image/Hollywood/Blackpanther.jpg" %}" class="d-block w-100" alt="..." height="500px">
+          </a>
+          <div class="carousel-caption">
+            <div class="content">
+              <h1 id="title">Black Panther</h1>
+              <p>After his father's death, T'Challa returns home to Wakanda to inherit his throne. However, a powerful enemy related to his family threatens to attack his nation.</p>
+              <div class="details">
+                <h6><span id="MVO">M</span>ovie <span id="MVO">V</span>ista <span id="MVO">O</span>riginal</h6>
+                  <h5 id="gen">Sci-fi</h5>
+                  <h4 id="years">2018</h4>
+                  <h3><span id="rates">IMDB</span> 7.3 <i class="fa-solid fa-star"></i></h3>
+                </div>
+              </div>
+              <a href="" class="btns">
+            <button type="button" class="watch">Watch Now</button>
+          </a>
+        </div>
+      </div>
+      
+
+      <div class="carousel-item">
+        <a href="">
+          <img src="{% static "core/image/Hollywood/IT.webp" %}" class="d-block w-100" alt="..." height="500px">
+        </a>
+          <div class="carousel-caption">
+            <div class="content">
+              <h1 id="title">IT</h1>
+              <p>Seven helpless and bullied children are forced to face their worst nightmares when Pennywise, a shape-shifting clown, reappears. The clown, an ancient evil torments children before feeding on them.</p>
+              <div class="details">
+                <h6><span id="MVO">M</span>ovie <span id="MVO">V</span>ista <span id="MVO">O</span>riginal</h6>
+                <h5 id="gen">Mystery</h5>
+                <h4 id="years">2017</h4>
+                <h3><span id="rates">IMDB</span> 7.3 <i class="fa-solid fa-star"></i></h3>
+              </div>
+            </div>
+            <a href="" class="btns">
+              <button type="button" class="watch">Watch Now</button>
+            </a>
+          </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  {% endblock content %}

@@ -1,0 +1,124 @@
+
+
+{% extends "core/base.html" %}
+
+
+{% block content %}
+
+<style>
+    
+    .about-container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+    
+    .about-container h1 {
+        text-align: center;
+        color: #333;
+    }
+    
+    .about-content {
+        margin-bottom: 30px;
+    }
+    
+    .about-content h2 {
+        font-size: 1.8em;
+        color: #fe2323;
+        margin-bottom: 10px;
+    }
+    
+    .about-content p {
+        font-size: 1.1em;
+        line-height: 1.6;
+        color: #666;
+    }
+    
+    .about-content ul {
+        list-style-type: disc;
+        padding-left: 20px;
+        color: #5ed31f;
+    }
+    
+    .about-content ul li {
+        font-size: 1em;
+        margin-bottom: 10px;
+    }
+    
+    .contact-info {
+        list-style-type: none;
+        padding-left: 0;
+        color: #555;
+    }
+    
+    .contact-info li {
+        margin-bottom: 8px;
+    }
+    
+    .contact-info a {
+        color: #007bff;
+        text-decoration: none;
+    }
+    
+    .contact-info a:hover {
+        text-decoration: underline;
+    }
+    
+    .social-links {
+        text-align: center;
+        margin-top: 15px;
+    }
+    
+    .social-links a {
+        color: #007bff;
+        text-decoration: none;
+        font-size: 1.1em;
+        margin: 0 10px;
+    }
+    
+    .social-links a:hover {
+        text-decoration: underline;
+    }
+    
+</style>
+
+
+
+
+<!--about-->
+
+<div class="about-container">
+    <h1>About Movie Vista</h1>
+    
+    <section class="about-content">
+        <h2>What is Movie Vista?</h2>
+        <p>Movie Vista is a comprehensive streaming and information platform dedicated to cinema lovers across the globe. From Hollywood blockbusters to indie gems, anime series to web originals, Movie Vista curates and organizes content to provide fans with a seamless experience exploring and enjoying their favorite genres.</p>
+    </section>
+    
+    <section class="about-content">
+        <h2>Why Was Movie Vista Created?</h2>
+        <p>With the ever-growing world of entertainment, finding quality movies, anime, and web series can be overwhelming. Movie Vista was born out of a passion for cinema and storytelling. Our mission is to make it easy for audiences to discover, learn about, and watch their favorite content. We bring together movies, TV shows, anime, and web series from Hollywood to international cinema, offering a one-stop platform for global entertainment.</p>
+    </section>
+    
+    <section class="about-content">
+        <h2>Who Will Enjoy Movie Vista?</h2>
+        <p>Movie Vista is the perfect platform for movie buffs, anime lovers, and binge-watchers who appreciate the art of storytelling. Whether you’re a fan of Hollywood blockbusters, indie films, global anime, or international web series, Movie Vista brings together the best of world cinema in one place.</p>
+    </section>
+    
+    
+    <section class="about-content">
+        <h2>About the Creator</h2>
+        <p><strong style="color: black;">Amar Gupta</strong></p>
+        <p>For any inquiries, feel free to reach out through the contact information below.</p>
+        <ul class="contact-info">
+            <li style="color: black;"><strong style="color: black;">Contact Number:</strong> <a href="tel:+8286149310">+91 8286149310</a></li>
+            <li style="color: black;"><strong style="color: black;">Email:</strong><a href="mailto:example@gmail.com"> movievistafilm@gmail.com</a></li>
+            <li style="color: black;"><strong style="color: black;">Address:</strong> 123 Movie Vista Lane, Cinema City, Film State, 123456</li>
+        </ul>
+    </section>
+</div>
+
+{% endblock content %}

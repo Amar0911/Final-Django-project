@@ -1,0 +1,138 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+
+<style>
+
+
+  section {
+    font-family: Arial, sans-serif;
+    background-image: linear-gradient(rgb(0, 0, 0),rgb(55, 49, 103),rgb(46, 38, 155));
+    color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; 
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .register-container {
+    background: rgba(20, 20, 20, 0.9);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .register-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #f7c948;
+    margin-bottom: 20px;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    background: #333;
+    color: #f4f4f4;
+    font-size: 16px;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  .register-btn {
+    background: linear-gradient(90deg, #00bdff, #0079ff);
+    color: #222;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 28px;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+    animation: button 1s linear infinite;
+  }
+
+  @keyframes button {
+    0%{
+      background: linear-gradient(0deg, #00bdff, #0079ff);
+    }
+
+    12%{
+      background: linear-gradient(45deg, #00bdff, #0079ff);
+    }
+
+    24%{
+      background: linear-gradient(95deg, #00bdff, #0079ff);
+    }
+
+    36%{
+      background: linear-gradient(145deg, #00bdff, #0079ff);
+    }
+
+    48%{
+      background: linear-gradient(195deg, #00bdff, #0079ff);
+    }
+
+    60%{
+      background: linear-gradient(245deg, #00bdff, #0079ff);
+    }
+
+
+    72%{
+      background: linear-gradient(295deg, #00bdff, #0079ff);
+    }
+
+    100%{
+      background: linear-gradient(360deg, #00bdff, #0079ff);
+    }
+  }
+
+  
+
+  .login-link {
+    display: block;
+    margin-top: 10px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .note {
+    color: #f7c948;
+  }
+
+
+</style>
+
+
+
+<section>
+  <div class="register-container">
+    <h2 class="register-title">Sign Up</h2>
+    <form action="" method="POST" novalidate>
+      {% csrf_token %}
+      {% for rf in rf %}
+        <label for="{{ rf.id_for_label }}" style="display: block; font-size: 16px; margin-top: 10px; color: #aaa; color:white;">{{ rf.label_tag }}</label>
+        {{ rf }}
+        <small style="color: red;">{{ rf.errors|striptags }}</small>
+      {% endfor %}
+      
+      <button type="submit" class="register-btn">Sign Up</button>
+    </form>
+    <a href="{% url 'login' %}" class="login-link">Already registered? <p class="note">Login</p></a>
+  </div>
+</section>
+
+{% endblock content %}

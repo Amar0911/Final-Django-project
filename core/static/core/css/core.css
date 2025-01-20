@@ -1,0 +1,794 @@
+
+*{
+    /* color: white; */
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+  }  
+
+.body {
+  background-image: linear-gradient(rgb(0, 0, 0),rgb(55, 49, 103),rgb(46, 38, 155));
+}
+
+/* ############################################################ navbar ############################################################# */ 
+
+
+#stick {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.7);
+  margin: 0 20px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+#logo {
+  height: 50px;
+  margin-left: 5px;
+}
+
+.nav-item {
+  font-family: Arial;
+  font-size: 25px;
+  color: white;
+}
+
+.nav-item:hover {
+  background-color: #ec1919;
+  border-radius: 20px 10px;
+}
+
+.dropdown-menu {
+  min-width: 5rem;
+}
+
+
+.dropdown-item:hover {
+  text-decoration: underline;
+  color: #ec1919;
+}
+
+.navbar-collapse {
+  justify-content: end;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  gap: 20px;  
+  margin-right: 25px;
+}
+
+#search-icon {
+  font-size: 25px;
+}
+
+.box {
+  display: flex;
+  cursor: pointer;
+  padding: 10px 0;
+  border-radius: 30px;
+  align-items: center;
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.box input {
+  width: 0;
+  outline: none;
+  border: none;
+  font-weight: 500;
+  transition: width 0.8s ease-in-out;
+  background: transparent;
+}
+
+.box:hover input {
+  width: 300px;  
+}
+
+.box a .fa-solid {
+  font-size: 18px;
+  color: #ec1919;
+}
+
+.box input::placeholder {
+  color: #fcfafa;
+  opacity: 0.8; 
+}
+
+/* Responsive adjustments */
+
+@media (max-width: 768px) {
+  .icon {
+    flex-direction: row; 
+    gap: 10px;
+  }
+
+  .navbar-collapse {
+    flex-direction: column; 
+    align-items: flex-end; 
+  }
+
+  .box {
+    margin-bottom: 10px; 
+  }
+}
+
+  /* ############################################################## carousel ####################################################### */
+
+
+
+
+/* ##################################################################### cards ####################################################### */
+  
+
+/* .drag {
+  position: relative;
+  overflow: hidden;
+  padding: 20px 0; 
+}
+
+.slider {
+  text-align: start;
+}
+
+.see-more {
+  display: flex;
+  gap: 20px;
+}
+
+#right-icon {
+  margin-top: 10px;
+  padding-left: 5px;
+}
+
+.head {
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+a {
+  text-decoration: none;
+  display: flex;
+}
+
+
+.heading {
+  margin-bottom: 20px;
+  font-size: 24px; 
+}
+
+.slider-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 20px; 
+  scrollbar-width: none;
+  overflow-y: hidden;
+}
+
+
+
+.cards {
+  position: relative;
+  background-clip: border-box;
+  border-radius: .25rem;
+}
+
+.card-image {
+  flex: 0 0 auto; 
+  width: 300px; 
+  height: 150px; 
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s; 
+  scroll-snap-align: start; 
+}
+
+
+.fa-star{
+  color: yellow;
+}
+
+.card-details {
+  position: absolute;
+  bottom: -16px; 
+  left: 0;
+  right: 0;
+  color: white;
+  background-color: rgb(0, 0, 0, 0.7); 
+  padding: 10px;
+  border-radius: 5px;
+  opacity: 0; 
+  transition: opacity 0.3s; 
+  text-align: center; 
+  font-size: 18px;
+}
+
+.cards:hover .card-details {
+  opacity: 1; 
+}
+
+.content {
+  position: relative;
+  justify-content: start;
+  text-align: start;
+  align-items: start;
+  margin-bottom: 20px;
+}
+
+.content h4 {
+  font-size: 40px;
+}
+
+.content p {
+  font-size: 13px;
+  width: 350px;
+  word-break: break-all;
+}
+
+.details-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.details-card h6 {
+  color: rgb(255, 255, 255, 0.8);
+  font-size: 12px;
+  margin-right: 10px;
+}
+
+.details-card h5 {
+  color: rgb(142, 230, 48);
+  font-size: 12px;
+  margin-right: 10px;
+}
+
+#year {
+  color: #fff;
+  font-size: 12px;
+  margin-right: 10px;
+}
+
+.details-card h3 {
+  color: rgb(255, 255, 255, 0.8);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.details-card h3 span {
+  background: yellow;
+  color: #000;
+  padding: 0px 3px;
+  margin: 0px 5px 0px 5px;
+  font-weight: 300;
+}
+
+.details-card h3 i {
+  margin: 5px;
+}
+
+ 
+/* Responsive */
+/*
+
+ @media (max-width: 768px) {
+  .card-image {
+    width: 160px; 
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-image {
+    width: 160px;
+    height: 100px;
+  }
+}  */
+
+/* ################################################################ footer ######################################################### */
+
+
+
+
+
+/* 
+.footer {
+  background-color: #343a40; 
+}
+
+.footer .footer-logo h3 {
+  font-family: 'Times New Roman', Times, serif;
+  color: #f8f9fa;
+  font-size: 40px;
+}
+
+.footer .footer-logo span {
+  color: red;
+}
+
+.footer h5 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.footer ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.footer ul li a {
+  color: #f8f9fa;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer ul li a:hover {
+  color: #007bff;
+}
+
+.footer .social-icons a {
+  color: #f8f9fa;
+  transition: color 0.3s;
+}
+
+.footer .social-icons a:hover {
+  color: #007bff;
+}
+
+.footer .social-icons i {
+  margin-right: 5px;
+}
+
+
+
+@media (max-width: 767px) {
+  .footer .social-icons a {
+    font-size: 1.5rem; 
+  }
+
+  .footer h5 {
+    font-size: 16px; 
+  }
+
+  .footer .footer-logo h3 {
+    font-size: 30px;
+  }
+} */
+
+
+
+/* ############################################################### login  ######################################################## */
+
+
+
+
+/* ############################################################## register ######################################################## */
+
+
+
+
+
+
+/* ##################################################################  profile  ####################################################  */
+
+
+
+
+.profile {
+  border: 2px solid rgb(0, 0, 0);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 5px 0 0  rgb(13, 8, 28);
+}
+
+.text-center a {
+  border: 1px solid white;
+  display: inline-block;
+  padding: 8px;
+  box-shadow: 0px 10px 25px -8px #000;
+  border-radius: 20px;
+}
+
+
+
+
+
+/* ############################################################# card.html ########################################################## */ 
+
+
+
+
+
+
+
+
+
+/* ################################################################# wishlist ##################################################### */ 
+
+
+
+
+
+.wish-card-img-top {
+  width: 100%;  
+  height: 100%;
+}
+
+.wish-card {
+  background: black;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+}
+
+.wish-card-body {
+  color: white;
+  padding: 20px;
+  position: absolute; 
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0; 
+  transform: translateY(-100%); 
+  transition: opacity 0.3s ease, transform 0.3s ease; 
+}
+
+.wish-card-title {
+  font-size: 25px;
+  font-weight: bold;
+  background: rgba(41, 40, 40, 0.3);
+  padding: 3px 5px;
+  border-radius: 10px;
+}
+
+.wish-card-text {
+  font-size: 14px;
+}
+
+.wish-card.hover-effect:hover {
+  transform: translateY(-10px);  
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);  
+}
+
+.wish-card.hover-effect:hover .wish-card-body {
+  opacity: 1;  
+  transform: translateY(0);  
+}
+
+
+
+.btn {
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-watch {
+  background: linear-gradient(90deg, #00bdff, #0079ff);
+  color: white;
+}
+
+.btn-watch:hover {
+  color: black;
+}
+
+
+/* ############################################################# Cardplay ######################################################## */
+
+/* 
+.container {
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie-card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.movie-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.movie-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(1);
+}
+
+.movie-details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  color: #fff;
+  flex-direction: column;
+}
+
+.movie-summary {
+  max-width: 600px;
+}
+
+#title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.movie-summary p {
+  font-size: .8rem;
+  margin-bottom: 15px;
+}
+
+.movie-info {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.movie-info li {
+  margin-bottom: 5px;
+}
+
+h6, #genre, #yeear {
+  display: inline-block;
+  margin-right: 10px;
+  color: #ffc107;
+  font-weight: 400;
+}
+
+#genre, #yeear {
+  font-size: 1rem;
+  color: #fff;
+}
+
+#rating {
+  border: 1px solid black;
+  font-size: 1rem;
+  background: #ffc107;
+  color: #000;
+  padding: 3px;
+  border-radius: 1px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.btn-play {
+  background-color: #ffc107;
+  border: 2px solid #ffc107;
+}
+
+.btn-play:hover {
+  background-color: #ffb300;
+}
+
+.btn-wishlist {
+  background-color: #dc3545;
+  border: 2px solid #dc3545;
+}
+
+.btn-wishlist:hover {
+  background-color: #c82333;
+}
+
+.btn i {
+  margin-right: 8px;
+}
+
+/* Responsive Design */
+
+/*
+@media (max-width: 768px) {
+  #title {
+      font-size: 1.5rem;
+  }
+
+  .movie-summary p {
+      font-size: 0.9rem;
+  }
+
+  .movie-info {
+      font-size: 0.8rem;
+  }
+
+  .button-group .btn {
+      font-size: 0.9rem;
+      padding: 8px 15px;
+  }
+} */
+
+
+/* ############################################################ About #########################################################*/
+
+.about-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.about-container h1 {
+  text-align: center;
+  color: #333;
+}
+
+.about-content {
+  margin-bottom: 30px;
+}
+
+.about-content h2 {
+  font-size: 1.8em;
+  color: #fe2323;
+  margin-bottom: 10px;
+}
+
+.about-content p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #666;
+}
+
+.about-content ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  color: #5ed31f;
+}
+
+.about-content ul li {
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.contact-info {
+  list-style-type: none;
+  padding-left: 0;
+  color: #555;
+}
+
+.contact-info li {
+  margin-bottom: 8px;
+}
+
+.contact-info a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+.social-links {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.social-links a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 1.1em;
+  margin: 0 10px;
+}
+
+.social-links a:hover {
+  text-decoration: underline;
+}
+
+
+/* ######################################################### contact ################################################################### */ 
+
+
+.contact-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.contact-container h1 {
+  text-align: center;
+  color: #333;
+}
+
+.contact-details, .contact-form {
+  margin-bottom: 30px;
+}
+
+.contact-info ul {
+  list-style-type: none;
+  padding-left: 0;
+  color: #e33030;
+}
+
+.contact-info ul li {
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+.contact-info a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+.contact-form h2 {
+  font-size: 1.5em;
+  color: #000;
+  margin-bottom: 10px;
+  margin-left: 37%;
+}
+
+.contact-form label {
+  display: block;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.contact-form input, .contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.contact-form button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 40%;
+}
+
+.contact-form button:hover {
+  background-color: #0056b3;
+}
+

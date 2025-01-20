@@ -1,0 +1,268 @@
+{% block content %}
+
+
+{% load static %}
+
+<style>
+
+  .card {
+    position: relative;
+    background: black;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7); 
+    color: white;
+    opacity: 0;  
+    transform: translateY(100%); 
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .card-title {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 3px 5px;
+    border-radius: 10px;
+    background: rgba(41, 40, 40, 0.5);
+    display: inline-block;
+    color: white;
+  }
+  
+  .card-body .butt-group {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .card-body .btn {
+    font-size: 14px;
+    padding: 5px;
+  }
+  
+  .card.hover-effect:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card.hover-effect:hover .card-body {
+    opacity: 1;  
+    transform: translateY(0); 
+  }
+  
+  .card-wish {
+    background-color: rgb(0, 0, 0, 0.7);
+    color: white;
+  }
+
+  .card-wish:hover {
+    background-color: white;
+    color: black;
+  }
+  
+  .butt-group .btn {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
+
+  .message-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px; 
+    width: 300px; 
+    text-align: center;
+    margin: auto; 
+    border-radius: 5px; 
+  }
+
+  #right-icon {
+    color:white;
+  }
+
+  .see-more {
+    text-decoration: none;
+  }
+
+  </style>
+
+
+
+
+<!--Anime movie-->
+
+    <div class="container-fluid">
+        <div class="drag">
+            <main class="slider"> 
+              <div class="see-more">
+                <h5 class="heading" style="color: white;">Anime</h5>
+                <a href="{% url "seemore_anime" %}"><h5 class="head" style="color: white;">See More</h5><i class="fa-solid fa-chevron-right" id="right-icon"></i></a>
+                </div>
+                <div class="slider-track">
+                    <div class="cards">
+                      <a href="{% url "seemore_anime" %}">
+                        <img src="{% static "core/image/anime/dandadan.1.jpg" %}" class="card-image" alt="dandadan">
+                        <div class="card-details">
+                          <h4 id="title">Dandadan</h>
+                        <div class="details-card">
+                            <h5 id="gen">Horror/Comedy</h5>
+                            <h4 id="year">2024</h4>
+                            <h3 id="rate"><span>IMDB</span><i class="fa-solid fa-star"></i>8.6</h3>
+                        </div>
+                      </div>
+                      </a>
+                    </div>
+
+
+                    <div class="cards">
+                      <a href="{% url "seemore_anime" %}">
+                        <img src="{% static "core/image/anime/deathnote.jpg" %}" class="card-image" alt="deathnote">
+                        <div class="card-details">
+                          <h4 id="title">Death Note</h>
+                        <div class="details-card">
+                            <h5 id="gen">Thriller</h5>
+                            <h4 id="year">2006</h4>
+                            <h3 id="rate"><span>IMDB</span><i class="fa-solid fa-star"></i>8.9</h3>
+                        </div>
+                      </div>
+                      </a>
+                    </div>
+
+
+                    <div class="cards">
+                      <a href="{% url "seemore_anime" %}">
+                        <img src="{% static "core/image/anime/demonslayer.jpg" %}" class="card-image" alt="demonslayer">
+                        <div class="card-details">
+                          <h4 id="title">demonslayer</h>
+                        <div class="details-card">
+                            <h5 id="gen">Adventure Dark fantasy</h5>
+                            <h4 id="year">2016</h4>
+                            <h3 id="rate"><span>IMDB</span><i class="fa-solid fa-star"></i>8.6</h3>
+                        </div>
+                      </div>
+                      </a>
+                    </div>
+
+
+                    <div class="cards">
+                      <a href="{% url "seemore_anime" %}">
+                        <img src="{% static "core/image/anime/draganballz.jpeg" %}" class="card-image" alt="draganballz">
+                        <div class="card-details">
+                          <h4 id="title">Drangan Ball Z</h>
+                        <div class="details-card">
+                            <h5 id="gen">Adventure Dark fantasy</h5>
+                            <h4 id="year">1989</h4>
+                            <h3 id="rate"><span>IMDB</span><i class="fa-solid fa-star"></i>8.8</h3>
+                        </div>
+                      </div>
+                      </a>
+                    </div>
+
+
+                    <div class="cards">
+                      <a href="{% url "seemore_anime" %}">
+                        <img src="{% static "core/image/anime/jujutsu-kaisen.jpg" %}" class="card-image" alt="jujutsu-kaisen">
+                        <div class="card-details">
+                          <h4 id="title">Jujutsu Kaisen</h>
+                        <div class="details-card">
+                            <h5 id="gen">Adventure Dark fantasy</h5>
+                            <h4 id="year">2018</h4>
+                            <h3 id="rate"><span>IMDB</span><i class="fa-solid fa-star"></i>8.5</h3>
+                        </div>
+                      </div>
+                      </a>
+                    </div>  
+
+
+
+                    <div class="cards">
+                      <a href="{% url "seemore_anime" %}">
+                        <img src="{% static "core/image/anime/haikyu.jpg" %}" class="card-image" alt="haikyu">
+                        <div class="card-details">
+                          <h4 id="title">Haikyu!!</h>
+                        <div class="details-card">
+                            <h5 id="gen">Drama</h5>
+                            <h4 id="year">2014</h4>
+                            <h3 id="rate"><span>IMDB</span><i class="fa-solid fa-star"></i>8.7</h3>
+                        </div>
+                      </div>
+                      </a>
+                    </div>
+
+
+
+                    <div class="cards">
+                      <a href="{% url "seemore_anime" %}">
+                        <img src="{% static "core/image/anime/rezero.jpg" %}" class="card-image" alt="re-zero">
+                        <div class="card-details">
+                          <h4 id="title">Re:Zero</h>
+                        <div class="details-card">
+                            <h5 id="gen">Psychological Horror</h5>
+                            <h4 id="year">2016</h4>
+                            <h3 id="rate"><span>IMDB</span><i class="fa-solid fa-star"></i>8.0</h3>
+                        </div>
+                      </div>
+                      </a>
+                    </div>
+
+
+
+                    <div class="cards">
+                      <a href="{% url "seemore_anime" %}">
+                        <img src="{% static "core/image/anime/onepiece.jpg" %}" class="card-image" alt="onepiece">
+                        <div class="card-details">
+                          <h4 id="title">One Piece</h>
+                        <div class="details-card">
+                            <h5 id="gen">Adventure</h5>
+                            <h4 id="year">1999</h4>
+                            <h3 id="rate"><span>IMDB</span><i class="fa-solid fa-star"></i>8.3</h3>
+                        </div>
+                      </div>
+                      </a>
+                    </div>
+
+
+
+                    <div class="cards">
+                      <a href="{% url "seemore_anime" %}">
+                        <img src="{% static "core/image/anime/monster.jpg" %}" class="card-image" alt="monster">
+                        <div class="card-details">
+                          <h4 id="title">Monster</h>
+                        <div class="details-card">
+                            <h5 id="gen">Thriller</h5>
+                            <h4 id="year">2004</h4>
+                            <h3 id="rate"><span>IMDB</span><i class="fa-solid fa-star"></i>8.7</h3>
+                        </div>
+                      </div>
+                      </a>
+                    </div>
+
+
+
+                    <div class="cards">
+                      <a href="{% url "seemore_anime" %}">
+                        <img src="{% static "core/image/anime/chainsawman.webp" %}" class="card-image" alt="Chainsaw Man">
+                        <div class="card-details">
+                          <h4 id="title">Chainsaw Man</h>
+                        <div class="details-card">
+                            <h5 id="gen">Action</h5>
+                            <h4 id="year">2023</h4>
+                            <h3 id="rate"><span>IMDB</span><i class="fa-solid fa-star"></i>7.8</h3>
+                        </div>
+                      </div>
+                      </a>
+                    </div>
+
+                    
+                </div>
+            </main>
+        </div>
+    </div>
+
+{% endblock content %}
