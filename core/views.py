@@ -139,7 +139,7 @@ def contact(request):
                     # Send a thank-you email to the user
                     subject = "Thank You for Contacting Us"
                     message = f"Dear {request.user.username},\n\nThank you for reaching out! We have received your message and will get back to you soon.\n\nBest regards,\nMovieVista Team"
-                    from_email = 'cricketguru798@gmail.com'
+                    from_email = 'movievistafilm@gmail.com'
                     recipient_list = [user_email]
 
                     try:
@@ -287,7 +287,7 @@ def forgotpassword(request):
             send_mail(
                 'Password Reset',
                 f'Click the following link to reset your password: {reset_url}',
-                'cricketguru798@gmail.com', 
+                'movievistafilm@gmail.com', 
                 [email],
                 fail_silently=False,
             )
@@ -341,7 +341,7 @@ from django.contrib.auth.decorators import login_required
 def subscription(request):
     plans = SubscriptionPlan.objects.all()
 
-    # Check if the user has an active subscription
+
     has_active_subscription = UserSubscription.objects.filter(user=request.user, is_active=True).exists()
 
     return render(request, 'core/subscription.html', {
