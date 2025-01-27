@@ -36,21 +36,21 @@ def register(request):
             rf = Registerform(request.POST)
             if rf.is_valid():
                 rf.save()
-                messages.success(request,'Registration Successfull !!')
+                messages.success(request, 'Registration Successful!!')
                 email = request.POST['email']
                 user = User.objects.filter(email=email).first()
                 if user:
                     send_mail(
-                        'Registration Successfull',
+                        'Registration Successful',
                         f'Thank you for choosing us!!',
-                        'cricketguru798@gmail', 
+                        'movievistafilm@gmail.com',
                         [email],
                         fail_silently=False,
                     )
                 return redirect('login')
         else:
             rf = Registerform()
-        return render(request,'core/signup.html',{'rf':rf})
+        return render(request, 'core/signup.html', {'rf': rf})
     else:
         return redirect('profile')
     
@@ -468,4 +468,20 @@ def play(request):
 
 
 
+#####################################################  Subscriptions ####################################
 
+from .models import UserSubscription
+
+
+def subscription_status(request):
+    """
+    Add `has_active_subscription` to the context for all templates.
+    """
+    if request.user.is_authenticated:
+        has_active_subscription = UserSubscription.objects.filter(user=request.user, is_active=True).exists()
+    else:
+        has_active_subscription = False
+
+    return {
+        'has_active_subscription': has_active_subscription,
+    }

@@ -36,10 +36,14 @@
 
       <!-- Subscription -->
       <div class="mx-auto">
+        {% if user.is_authenticated %}
         {% if not has_active_subscription %}
           <a href="{% url 'subscription' %}" class="nav-link subscription-link">
             <i class="fa-solid fa-box"></i> Subscription
           </a>
+        {% endif %}
+        {% else %}
+          <a href="{% url 'login' %}" class="nav-link subscription-link"></a>
         {% endif %}
       </div>
       
