@@ -5,11 +5,10 @@
 {% block content %}
 
 <style> 
-
   .wish-card-img-top {
     width: 100%;  
     height: 100%;
-    object-fit: cover;
+    {% comment %} object-fit: cover; {% endcomment %}
   }
   
   .wish-card {
@@ -67,7 +66,6 @@
     transition: background-color 0.3s ease;
   }
   
-  
   .btn-watch {
     background: linear-gradient(90deg, #00bdff, #0079ff);
     color: white;
@@ -77,7 +75,6 @@
     color: black;
   }
 
-  
   .btn-wishlist {
     background: linear-gradient(90deg, #00bdff, #0079ff); 
     color: white;
@@ -92,11 +89,9 @@
     transition: color 0.3s ease;
   }
 
-  
   .wish-toggle:checked + .fa-heart {
     color: red; 
   }
-
 
   .message-container {
     display: flex;
@@ -108,10 +103,62 @@
     margin: auto; 
     border-radius: 5px; 
   }
-  
-</style>
 
   
+  .watchlist-heading {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 2px solid #0079ff;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+
+ 
+  .no-movies {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 50px;
+    font-weight: bold;
+  }
+  
+  @media (min-width: 768px) {
+    .col-md-3 {
+      {% comment %} width: 50%; {% endcomment %}
+    }
+  }
+
+  @media (min-width: 992px) and (max-width: 1199px) {
+   
+    .col-md-3 {
+      width: 33%;
+    }
+
+    .wish-card-img-top {
+      width: 100%;  
+      height: 100%;
+      {% comment %} object-fit: cover; {% endcomment %}
+    }
+  }
+
+  @media (min-width: 1200px) and (max-width: 1399px) {
+   
+    .col-md-3 {
+      width: 33%;
+    }
+
+    .wish-card-img-top {
+      width: 100%;  
+      height: 100%;
+      {% comment %} object-fit: cover; {% endcomment %}
+    }
+  }
+
+
+</style>
 
 <br>
 
@@ -124,25 +171,27 @@
         {% endfor %}
     </div>
   {% endif %}
-  
+
+  <div class="text-center">
+    <h5 class="watchlist-heading">Watch List</h5>
+  </div>
+
+  {% if movies %}
   <div class="row">
-    <div class="see-more">
-      <h5 class="heading" style="color: white;">Watch List</h5>
-    </div>
     {% for item in movies %}
     <div class="col-md-3 mb-3">
         <a href="">
             <div class="wish-card hover-effect">
                 <img src="{{ item.films.movie_image.url }}" class="wish-card-img-top" alt="Card Image">
                 <div class="wish-card-body">
-                    <h5 class="wish-card-title" style="color: white;">{{ item.films.name }}</h5>
+                    <h5 class="wish-card-title">{{ item.films.name }}</h5>
                     <div class="wish-button">
                         <a href="">
                             <button class="btn btn-watch"><i class="fa-solid fa-film"></i> Watch Trailer</button>
                         </a>
                         <a href="{% url 'watchlistremove' item.films.id %}">
                             <label class="btn btn-wishlist card-wish">
-                                <i class="fa-regular fa-heart"></i> Remove
+                              <i class="fa-solid fa-heart" style="color: red;"></i> Remove
                             </label>
                         </a>
                     </div>
@@ -152,8 +201,12 @@
     </div>
     {% endfor %}
   </div>
+  {% else %}
+    <div class="no-movies">No movies available in your watchlist.</div>
+  {% endif %}
+
 </div>
 
-
+<br><br><br><br><br><br><br><br><br><br><br><br>
 
 {% endblock content %}

@@ -1,12 +1,11 @@
-
-
 {% load static %}
 
 {% block content %}
 
 <style>
 
-  .watch {
+
+  .soon {
     background: linear-gradient(90deg, #ff7e5f, #feb47b);
     color: white;
     border: none;
@@ -21,17 +20,12 @@
     text-decoration: none;
   }
   
-  .watch:hover {
+  .soon:hover {
     background: linear-gradient(90deg, #feb47b, #ff7e5f);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     transform: translateY(-3px);
     color: black;
   }
-  
-  {% comment %} .watch:active {
-    transform: translateY(2px);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-  } {% endcomment %}
   
   .btns {
     display: flex;
@@ -39,191 +33,112 @@
     margin-top: 20px;
   }
 
+  .carousel-item a img {
+    height: 500px;
+  }
+
+  
+
   .carousel-caption {
-    padding: 10px;
-    border-radius: 15px;
-    max-width: 630px;
-    max-height: 400px; 
-    {% comment %} margin: auto; {% endcomment %}
-    text-align: left;
-    color: white; 
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 10;
   }
-  
-  
-  .carousel-caption .content h1 {
-    font-size: 2.5rem;
+
+  .carousel-caption h2 {
+    font-size: 2rem;
+    color: white;
     font-weight: bold;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-    margin-bottom: 15px;
-  }
-  
-  .carousel-caption .content p {
-    font-size: 1.0rem;
-    font-weight: bold;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    width: auto;
-    font-family: Georgia;
-  }
-  
-   .carousel-caption .details h6 {
-    font-size: 1rem;
-    font-weight: bold;
-    letter-spacing: 1.2px;
     margin-bottom: 10px;
-  } 
+  }
+
+  .carousel-caption .soon {
+    font-size: 1.2rem;
+    padding: 12px 25px;
+  }
+
+  @media (max-width: 768px) {
+    .carousel-item a img {
+      height: 300px;
+    }
+
+    .carousel-caption h2 {
+      font-size: 1rem;
+      color: white;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
   
-  .carousel-caption .details h5,
-  .carousel-caption .details h4,
-  .carousel-caption .details h3 {
-    font-size: 1.0rem;
-    font-weight: 300;
-    margin-bottom: 5px;
+    .carousel-caption .soon {
+      font-size: 0.8rem;
+      padding: 12px 25px;
+    }
+
+
   }
+
+  @media (max-width: 480px) {
+    .carousel-item a img {
+      height: 250px;
+    }
+
+    .carousel-caption h2 {
+      font-size: 1rem;
+      color: white;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
   
+    .carousel-caption .soon {
+      font-size: 0.6rem;
+      padding: 12px 25px;
+    }
 
-  
-  {% comment %} .carousel-caption:hover {
-    background: rgb(0, 0, 0, 0.2);
-  } {% endcomment %}
 
-  #rates {
-    background: yellow;
-    color: black;
   }
 
-
-
-  .details #MVO {
-    color: red;
-  }
-  
-  
-@media (max-width: 768px) {
-  .carousel-caption {
-    max-width: 90%; 
-    padding: 15px; 
-  }
-
-  .carousel-caption .content h1 {
-    font-size: 1.8rem; 
-  }
-
-  .carousel-caption .content p {
-    font-size: 1rem; 
-  }
-
-  .carousel-caption .details h5,
-  .carousel-caption .details h4,
-  .carousel-caption .details h3 {
-    font-size: 1rem; 
-  }
-
-  .carousel-caption .watch {
-    font-size: 0.9rem; 
-    padding: 10px 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .carousel-caption {
-    max-width: 100%; 
-    padding: 10px; 
-    word-wrap: break-word;
-    overflow: auto;
-  }
-
-  .carousel-caption .content h1 {
-    font-size: 1.0rem; 
-  }
-
-  .carousel-caption .content p {
-    font-size: 0.9rem; 
-  }
-
-  .carousel-caption .details h6{
-    font-size: 0.8rem;
-  }
-
-  .carousel-caption .details h5,
-  .carousel-caption .details h4,
-  .carousel-caption .details h3 {
-    font-size: 0.7rem; 
-  }
-
-  .carousel-caption .watch {
-    font-size: 0.8rem; 
-    padding: 8px 16px; 
-  }
-}
-  
-  
 
 </style>
 
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
-  
-    
 
-
-      <div class="carousel-item active">
-        <a href="">
-          <img src="{% static "core/image/Hollywood/assassination-nation.webp" %}" class="d-block w-100" alt="..." height="500px">
-          </a>
-          <div class="carousel-caption">
-            <div class="content">
-                <h1 id="title">Assassination Nation</h1>
-                <p>In Salem, USA, four friends fight to survive after a malicious hacker exposes everyone's secrets on the internet, causing their town to descend into chaos.</p>
-              <div class="details">
-                <h6><span id="MVO">M</span>ovie <span id="MVO">V</span>ista <span id="MVO">O</span>riginal</h6>
-                <h5 id="gen">Crime</h5>
-                <h4 id="years">2018</h4>
-                  <h3><span id="rates">IMDB</span> 6.0 <i class="fa-solid fa-star"></i></h3>
-                </div>
-              </div>
-              <a href="" class="btns">
-                <button type="button" class="watch">Watch Now</button>
-              </a>
-            </div>
-          </div>
-
-
-
-      <div class="carousel-item">
-        <a href="">
-          <img src="{% static "core/image/Hollywood/mortal-kombat.jpg" %}" class="d-block w-100" alt="..." height="500px">
+    <div class="carousel-item active">
+      <a href="">
+        <img src="{% static 'core/image/Hollywood/assassination-nation.webp' %}" class="d-block w-100" alt="...">
+      </a>
+      <div class="carousel-caption">
+        <h2>Assassination Nation</h2>
+        <a href="" class="btns">
+          <button type="button" class="soon">Coming Soon</button>
         </a>
-        <div class="carousel-caption">
-          <div class="content">
-            <h1 id="title">Mortal Kombat</h1>
-            <p>Cole Young, a washed-up MMA fighter, is chosen to join a team of champions in a high-stakes battle to prevent the Earth from being taken over by Outworld.</p>
-            <div class="details">
-              <h6><span id="MVO">M</span>ovie <span id="MVO">V</span>ista <span id="MVO">O</span>riginal</h6>
-              <h5 id="gen">Fantasy</h5>
-                  <h4 id="years">2021</h4>
-                  <h3><span id="rates">IMDB</span> 6.1 <i class="fa-solid fa-star"></i></h3>
-                </div>
-              </div>
-            <a href="" class="btns">
-            <button type="button" class="watch">Watch Now</button>
-            </a>
-          </div>
-        </div>
-
-        
-        
-
-    
+      </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
 
-  {% endblock content %}
+    <div class="carousel-item">
+      <a href="">
+        <img src="{% static 'core/image/Hollywood/mortal-kombat.jpg' %}" class="d-block w-100" alt="...">
+      </a>
+      <div class="carousel-caption">
+        <h2>Mortal Kombat</h2>
+        <a href="" class="btns">
+          <button type="button" class="soon">Coming Soon</button>
+        </a>
+      </div>
+    </div>
+
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+{% endblock content %}

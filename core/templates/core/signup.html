@@ -114,9 +114,30 @@
   }
 
 
+  .message-container {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 2px 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: auto;
+    {% comment %} min-width: 300px;
+    max-width: 80%;
+    z-index: 1000; {% endcomment %}
+  }
+
+
 </style>
 
-
+{% if messages %}
+  <div class="alert message-container">
+    {% for message in messages %}
+      <p style="color: red;">{{ message }}</p>
+    {% endfor %}
+  </div>
+{% endif %}
 
 <section>
   <div class="register-container">

@@ -31,28 +31,37 @@ def index(request):
 
 
 def register(request):
-    if not request.user.is_authenticated:
-        if request.method == 'POST':
-            rf = Registerform(request.POST)
-            if rf.is_valid():
-                rf.save()
-                messages.success(request, 'Registration Successful!!')
-                email = request.POST['email']
-                user = User.objects.filter(email=email).first()
-                if user:
-                    send_mail(
-                        'Registration Successful',
-                        f'Thank you for choosing us!!',
-                        'movievistafilm@gmail.com',
-                        [email],
-                        fail_silently=False,
-                    )
-                return redirect('login')
-        else:
-            rf = Registerform()
-        return render(request, 'core/signup.html', {'rf': rf})
-    else:
+    if request.user.is_authenticated:
         return redirect('profile')
+
+    if request.method == 'POST':
+        rf = Registerform(request.POST)
+        email = request.POST.get('email')
+
+        if not email:
+            messages.error(request, 'Email is required')
+        elif User.objects.filter(email=email).exists():
+            messages.error(request, 'Email already exists')
+        elif rf.is_valid():
+            user = rf.save()
+            messages.success(request, 'Registration Successful!!')
+
+            send_mail(
+                'Registration Successful',
+                'Thank you for choosing us!!',
+                'movievistafilm@gmail.com',
+                [email],
+                fail_silently=False,
+            )
+
+            return redirect('login')
+        else:
+            messages.error(request, 'Invalid form submission')
+
+    else:
+        rf = Registerform()
+
+    return render(request, 'core/signup.html', {'rf': rf})
     
 
 
@@ -63,21 +72,27 @@ def register(request):
 def log_in(request):
     if not request.user.is_authenticated:
         if request.method == "POST":
-            rf = AuthenticationForm(request,request.POST)
+            rf = AuthenticationForm(request, request.POST)
             if rf.is_valid():
                 name = rf.cleaned_data['username']
                 pas = rf.cleaned_data['password']
                 user = authenticate(username=name, password=pas)
                 if user is not None:
                     login(request, user)
+                    messages.success(request, "Login successful!")
                     return redirect('/')
                 else:
-                    messages.error(request,'Invalid username and password')
+                    messages.error(request, 'Invalid username or password') 
+            else:
+                messages.error(request, "Invalid form submission. Please check your details.")
+
         else:
             rf = AuthenticationForm()
-        return render(request,'core/login.html',{'rf':rf})   
+
+        return render(request, 'core/login.html', {'rf': rf})
     else:
-        return redirect('profile') 
+        return redirect('profile')
+
     
 
 
@@ -459,14 +474,6 @@ def payment_failed(request):
     return render(request, 'core/payment_failed.html')
 
 
-############################################ Play ###########################################################
-
-
-
-def play(request):
-    return render(request,'core/play.html')
-
-
 
 #####################################################  Subscriptions ####################################
 
@@ -485,3 +492,23 @@ def subscription_status(request):
     return {
         'has_active_subscription': has_active_subscription,
     }
+
+
+############################################ Movie Search ############################################
+
+def movie_search(request):
+    query = request.GET.get('q') 
+    print("Search Query:", query)
+    if query:  
+        movie = Movie.objects.filter(name__icontains=query) | Movie.objects.filter(starcast__icontains=query)
+        print("Movies Found:", movie)
+    else:
+        movie = Movie.objects.all()
+
+    context = {
+        'movie': movie,  
+        'query': query,
+    }
+    return render(request, 'core/movie_search.html', context)
+
+

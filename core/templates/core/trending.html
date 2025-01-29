@@ -137,8 +137,8 @@
   
   .card-image {
     flex: 0 0 auto; 
-    width: 300px; 
-    height: 150px; 
+    width: 350px; 
+    height: 200px; 
     border-radius: 10px;
     transition: transform 0.3s, box-shadow 0.3s; 
     scroll-snap-align: start; 
@@ -233,7 +233,7 @@
   /* Responsive */
   
   
-   @media (max-width: 768px) {
+   @media (max-width: 767px) {
     .card-image {
       width: 160px; 
       height: 100px;
@@ -246,6 +246,13 @@
       height: 100px;
     }
   } 
+
+  @media (min-width: 768px) and (max-width: 1024) {
+    .card-image {
+      width: 300px; 
+      height: 100px;
+    }
+  }
 
   </style>
 

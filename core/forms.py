@@ -11,7 +11,8 @@ class Registerform(UserCreationForm):
     password2 = forms.CharField(label='Confirm Password',widget=forms.PasswordInput(attrs={'class':'form-control'}))
     mobile_number = forms.CharField(
         label='Mobile Number',
-        max_length=15,
+        min_length=10,
+        max_length=10,
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': ''})
     )
 

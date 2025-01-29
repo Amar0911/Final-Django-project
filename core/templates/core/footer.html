@@ -1,127 +1,204 @@
-
-
-
 {% block content %}
-
+{% endblock content %}
 <style>
+ 
+  .wrapper {
+    flex: 1;
+}
 
-  
 .footer {
-  background-color: #343a40; 
+    background-color: #1c1c1e;
+    color: #f8f9fa;
+    padding: 60px 20px;
+    position: relative;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .footer .footer-logo h3 {
-  font-family: 'Times New Roman', Times, serif;
-  color: #f8f9fa;
-  font-size: 40px;
+    font-size: 42px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
 }
 
 .footer .footer-logo span {
-  color: red;
+    color: #ff4d4d;
 }
 
 .footer h5 {
-  font-size: 18px;
-  font-weight: bold;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #ffcc00;
+}
+
+.footer p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #d1d1d1;
 }
 
 .footer ul {
-  list-style-type: none;
-  padding-left: 0;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.footer ul li {
+    margin-bottom: 12px;
 }
 
 .footer ul li a {
-  color: #f8f9fa;
-  text-decoration: none;
-  transition: color 0.3s;
+    color: #f8f9fa;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    font-size: 16px;
 }
 
 .footer ul li a:hover {
-  color: #007bff;
+    color: #ffcc00;
+    text-decoration: underline;
+}
+
+.footer .social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
 }
 
 .footer .social-icons a {
-  color: #f8f9fa;
-  transition: color 0.3s;
+    color: #f8f9fa;
+    font-size: 24px;
+    transition: all 0.3s ease-in-out;
 }
 
 .footer .social-icons a:hover {
-  color: #007bff;
+    color: #ff4d4d;
+    transform: scale(1.2);
 }
 
-.footer .social-icons i {
-  margin-right: 5px;
+.footer-bottom {
+    background-color: #121214;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #b0b0b0;
 }
-
-
 
 @media (max-width: 767px) {
-  .footer .social-icons a {
-    font-size: 1.5rem; 
-  }
+    .footer {
+        text-align: center;
+    }
 
-  .footer h5 {
-    font-size: 16px; 
-  }
+    .footer ul {
+        display: inline-block;
+        text-align: left;
+    }
 
-  .footer .footer-logo h3 {
-    font-size: 30px;
-  }
+    .footer .social-icons {
+        justify-content: center;
+    }
+
+    .footer .footer-logo h3 {
+        font-size: 32px;
+    }
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+    .footer {
+        padding: 50px 30px;
+    }
+
+    .footer .footer-logo h3 {
+        font-size: 28px;
+    }
+
+    .footer h5 {
+        font-size: 18px;
+    }
+
+    .footer p {
+        font-size: 15px;
+    }
+
+    .footer ul li {
+        font-size: 15px;
+    }
+
+    .footer .social-icons a {
+        font-size: 22px;
+    }
+
+    .footer .footer-logo,
+    .footer .social-icons {
+        justify-content: center;
+    }
+
+    .footer .footer-logo h3 {
+        text-align: center;
+    }
+
+    .footer-bottom {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 1200px){
+  .footer {
+    padding: 50px 30px;
+}
+
+.footer .footer-logo h3 {
+    font-size: 28px;
+}
+}
 
 
 </style>
 
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 mb-4 text-center text-lg-start">
+        <a href="{% url 'index' %}" class="footer-logo" style="text-decoration: none;">
+          <h3>
+            <span>M</span>ovie<span>V</span>ista<small>&reg;</small>
+          </h3>
+        </a>
+      </div>
 
-<footer class="footer bg-dark text-white py-5">
-  <div class="container-fluid">
-    
-    
-    <div class="row" style="justify-content: space-between;">
-      <div class="col-lg-3 col-md-12 mb-4 text-center text-lg-start">
-        <a href="{% url "index" %}" class="footer-logo" style="text-decoration: none;">
-          <h3><span style="color: red; font-size: 40px; font-family: Times New Roman;">M</span>ovie
-            <span style="color: red; font-size: 40px; font-family: Times New Roman;">V</span>ista<small
-            style="font-size: 15px;">&reg;</small></h3>
-          </a>
-        </div>
-        
-        
-        <div class="col-lg-3 col-md-6 mb-4">
-          <h5 style="display: flex; justify-content: center; align-items: center;">About Us</h5>
-          <p>Learn more about our mission and vision. We aim to provide the best movie experience to all movie
-            lovers around the world.</p>
-          </div>
-          
-          
-          
-          <div class="col-lg-2 col-md-6 mb-4">
-            <h5>Quick Links</h5>
-            <ul class="list-unstyled" style="margin-left: 20px;">
-              <li><a href="{% url "index" %}" class="text-white">Home</a></li>
-              <li><a href="{% url "about" %}" class="text-white">About</a></li>
-              <li><a href="{% url "contact" %}" class="text-white">Contact</a></li>
-            </ul>
-          </div>
-  
-          
-          <div class="col-lg-2 col-md-12 mb-4">
-            <h5>Follow Us</h5>
-            <div class="social-icons" style="margin-left: 20px;">
-              <a href="#" class="text-white me-3"><i class="fa-brands fa-facebook fa-2x"></i></a>
-              <a href="#" class="text-white me-3"><i class="fa-brands fa-twitter fa-2x"></i></a>
-              <a href="#" class="text-white me-3"><i class="fa-brands fa-instagram fa-2x"></i></a>
-              <a href="#" class="text-white me-3"><i class="fa-brands fa-youtube fa-2x"></i></a>
-            </div>
-          </div>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h5>About Us</h5>
+        <p>
+          Discover our passion for movies and our commitment to delivering the
+          best cinematic experience worldwide.
+        </p>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h5>Follow Us</h5>
+        <div class="social-icons">
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-youtube"></i></a>
         </div>
       </div>
-      
-  
-      <div class="text-center py-3">
-        <small>&copy; 2024 MovieVista. All rights reserved.</small>
-      </div>
-    </footer>
-    
-{% endblock content %}
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <small>&copy; 2024 MovieVista. All rights reserved.</small>
+  </div>
+</footer>
+
+
+

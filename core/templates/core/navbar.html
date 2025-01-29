@@ -19,6 +19,70 @@
     text-decoration: none;
   }
 
+
+  .box {
+    display: flex;
+    align-items: center;
+    border-radius: 25px;
+    {% comment %} padding: 5px 10px; {% endcomment %}
+    {% comment %} background-color: rgba(255, 255, 255, 0.2); {% endcomment %}
+    transition: all 0.3s ease;
+}
+
+.form-c {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 8px 12px;
+    width: 200px;
+    font-size: 1rem;
+    border-radius: 25px;
+}
+
+.form-c::placeholder {
+    {% comment %} color: rgba(255, 255, 255, 0.7); {% endcomment %}
+}
+
+.box button {
+    {% comment %} background: #ffcc00;  {% endcomment %}
+    border: none;
+    padding: 8px 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box button:hover {
+    {% comment %} background: #e6b800;  {% endcomment %}
+}
+
+#search-icon {
+    font-size: 1.2rem;
+    color: #000; 
+    transition: color 0.3s ease;
+}
+
+.box:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.form-c:focus {
+    border-radius: 25px;
+    padding-left: 15px;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .form-c {
+        width: 150px;
+    }
+}
+
+
  
   
 </style>
@@ -58,12 +122,14 @@
       <!-- Right-Side Elements -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Search Box -->
-        <div class="box">
-          <input class="form-c" type="search" placeholder="Search...." aria-label="Search" style="color:white;">
-          <a href="#">
-            <i class="fa-solid fa-magnifying-glass" id="search-icon"></i>
-          </a>
-        </div>
+         <form action="{% url "movie_search" %}" method="GET">
+           <div class="box">
+             <input class="form-c" type="search" placeholder="Search...." aria-label="Search" style="color:white;" name="q" value="{{query}}">
+              <button type="submit">
+                <i class="fa-solid fa-magnifying-glass" id="search-icon"></i>
+              </button>
+            </div>
+          </form>
 
         <!-- Icons -->
         <div class="icon d-flex align-items-center">
