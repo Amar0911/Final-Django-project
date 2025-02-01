@@ -143,15 +143,14 @@ def contact(request):
         if request.method == 'POST':
             form = ContactForm(request.POST)
             if form.is_valid():
-                # Check if the email in the form matches the logged-in user's email
+                # Check user using same email or not 
                 user_email = form.cleaned_data.get('email')
                 if user_email != request.user.email:
                     messages.error(request, 'The email address does not match your registered email.')
                 else:
-                    # Save the form
                     form.save()
 
-                    # Send a thank-you email to the user
+                    # Send msg to the user
                     subject = "Thank You for Contacting Us"
                     message = f"Dear {request.user.username},\n\nThank you for reaching out! We have received your message and will get back to you soon.\n\nBest regards,\nMovieVista Team"
                     from_email = 'movievistafilm@gmail.com'
@@ -254,15 +253,17 @@ def cardplay_hollywood(request,id):
 
 def watchlistadd(request, id):
     if request.user.is_authenticated:
-        movie = Movie.objects.get(pk=id)
+        movie = get_object_or_404(Movie, pk=id)
         user = request.user
         referer = request.META.get('HTTP_REFERER', '/')  
         
         if Watchlist.objects.filter(user=user, films=movie).exists():
-            messages.error(request, 'This movie is already added to your Watchlist')
+            # messages.error(request, 'This movie is already added to your Watchlist')
+            Watchlist.objects.get(user=user, films=movie).delete()
+            messages.error(request, f'{movie.name} Removed from Watchlist')
         else:
             Watchlist.objects.create(user=user, films=movie)
-            messages.success(request, 'Added to Watchlist')
+            messages.success(request, f'{movie.name} Added to Watchlist')
         
         return redirect(referer)  
     else:
@@ -282,7 +283,7 @@ def watchlistremove(request, id):
     if request.user.is_authenticated:
         movie = Movie.objects.get(pk=id)
         Watchlist.objects.filter(user=request.user, films=movie).delete()
-        messages.success(request, 'Removed from Watchlist')
+        messages.success(request, f'{movie.name} Removed from Watchlist')
         return redirect('watchlist')
     else:
         return redirect('login')
@@ -300,7 +301,7 @@ def forgotpassword(request):
             uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
             reset_url = request.build_absolute_uri(f'/resetpassword/{uidb64}/{token}/')           
             send_mail(
-                'Password Reset',
+                'Password Reset Link',
                 f'Click the following link to reset your password: {reset_url}',
                 'movievistafilm@gmail.com', 
                 [email],
@@ -375,19 +376,19 @@ def payment(request):
         messages.error(request, 'No plan selected.')
         return redirect('subscription')
 
-    # Check if the plan exists
+    # Check user have any subscription plan or not
     plan = SubscriptionPlan.objects.filter(id=plan_id).first()
     if not plan:
         messages.error(request, 'Subscription plan not found.')
         return redirect('subscription')
 
-    # Check if the user already has an active subscription
+    # Check user have already active subscription plan
     existing_active_subscription = UserSubscription.objects.filter(user=request.user, is_active=True).first()
     if existing_active_subscription:
         messages.error(request, 'You already have an active subscription to a plan.')
         return redirect('subscription')
 
-    # Check if there is an inactive subscription for the same plan
+    # Check user have any inactive subscription plan
     existing_inactive_subscription = UserSubscription.objects.filter(
         user=request.user,
         plan=plan,
@@ -406,7 +407,7 @@ def payment(request):
             user=request.user,
             plan=plan,
             end_date=end_date,
-            is_active=False  # Initially inactive
+            is_active=False  
         )
 
     # PayPal payment setup
@@ -415,7 +416,7 @@ def payment(request):
         'business': settings.PAYPAL_RECEIVER_EMAIL,
         'amount': plan.price,
         'item_name': plan.name,
-        'invoice': str(uuid.uuid4()),  # Unique invoice ID
+        'invoice': str(uuid.uuid4()),  
         'currency_code': 'USD',
         'notify_url': f"http://{host}{reverse('paypal-ipn')}",
         'return_url': f"http://{host}{reverse('payment_success')}?subscription_id={user_subscription.id}",
@@ -445,7 +446,7 @@ def payment_success(request):
         messages.error(request, 'Invalid subscription details.')
         return redirect('subscription')
 
-    # Check if the subscription exists
+    # Check user have any subscription
     user_subscription = UserSubscription.objects.filter(id=subscription_id, user=request.user).first()
     if not user_subscription:
         messages.error(request, 'Subscription not found.')
@@ -454,7 +455,7 @@ def payment_success(request):
     payment_confirmed = True  
 
     if payment_confirmed:
-        # Activate the subscription
+        # Once the payment confirmed Activate the subscription
         user_subscription.is_active = True
         user_subscription.save()
 
@@ -497,17 +498,16 @@ def subscription_status(request):
 ############################################ Movie Search ############################################
 
 def movie_search(request):
-    query = request.GET.get('q') 
-    print("Search Query:", query)
-    if query:  
-        movie = Movie.objects.filter(name__icontains=query) | Movie.objects.filter(starcast__icontains=query)
-        print("Movies Found:", movie)
-    else:
-        movie = Movie.objects.all()
-
+    query = request.GET.get('q', '').strip()  
+    if not query:  
+        return redirect(request.META.get('HTTP_REFERER', 'home')) 
+    movie = Movie.objects.filter(name__icontains=query) | Movie.objects.filter(starcast__icontains=query) | Movie.objects.filter(genre__icontains=query)
+    watchlist = Watchlist.objects.filter(user=request.user).values_list('films', flat=True)
+    is_in_watchlist = {m.id: m.id in watchlist for m in movie}
     context = {
         'movie': movie,  
         'query': query,
+        'is_in_watchlist': is_in_watchlist,
     }
     return render(request, 'core/movie_search.html', context)
 

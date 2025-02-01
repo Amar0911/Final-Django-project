@@ -24,8 +24,6 @@
     display: flex;
     align-items: center;
     border-radius: 25px;
-    {% comment %} padding: 5px 10px; {% endcomment %}
-    {% comment %} background-color: rgba(255, 255, 255, 0.2); {% endcomment %}
     transition: all 0.3s ease;
 }
 
@@ -40,12 +38,9 @@
     border-radius: 25px;
 }
 
-.form-c::placeholder {
-    {% comment %} color: rgba(255, 255, 255, 0.7); {% endcomment %}
-}
+
 
 .box button {
-    {% comment %} background: #ffcc00;  {% endcomment %}
     border: none;
     padding: 8px 12px;
     border-radius: 50%;
@@ -56,9 +51,6 @@
     justify-content: center;
 }
 
-.box button:hover {
-    {% comment %} background: #e6b800;  {% endcomment %}
-}
 
 #search-icon {
     font-size: 1.2rem;
@@ -93,12 +85,13 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark" id="stick">
     <div class="container-fluid">
-      <!-- Logo -->
+      
       <a class="navbar-brand" href="{% url "index" %}">
         <img src="{% static "core/image/M__2___1_-removebg-preview.png" %}" alt="MovieVista Logo" id="logo">
       </a>
 
-      <!-- Subscription -->
+      <!-- Subscription button -->
+
       <div class="mx-auto">
         {% if user.is_authenticated %}
         {% if not has_active_subscription %}
@@ -114,14 +107,12 @@
 
       
 
-      <!-- Navbar Toggle Button -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- Right-Side Elements -->
+    
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <!-- Search Box -->
          <form action="{% url "movie_search" %}" method="GET">
            <div class="box">
              <input class="form-c" type="search" placeholder="Search...." aria-label="Search" style="color:white;" name="q" value="{{query}}">
@@ -131,7 +122,7 @@
             </div>
           </form>
 
-        <!-- Icons -->
+       
         <div class="icon d-flex align-items-center">
           <ul class="navbar-nav">
             <li class="nav-item">
@@ -156,6 +147,8 @@
             </li>
           </ul>
         </div>
+
+
       </div>
     </div>
 </nav>

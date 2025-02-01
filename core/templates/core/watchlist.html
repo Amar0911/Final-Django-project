@@ -5,10 +5,11 @@
 {% block content %}
 
 <style> 
+
+
   .wish-card-img-top {
     width: 100%;  
     height: 100%;
-    {% comment %} object-fit: cover; {% endcomment %}
   }
   
   .wish-card {
@@ -16,21 +17,17 @@
     width: 100%;
     border-radius: 8px;
     overflow: hidden;
-    position: relative; 
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
     height: 200px;
   }
   
   .wish-card-body {
     color: white;
     padding: 20px;
-    position: absolute; 
+    position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    opacity: 0; 
-    transform: translateY(-100%); 
-    transition: opacity 0.3s ease, transform 0.3s ease; 
   }
   
   .wish-card-title {
@@ -43,18 +40,13 @@
   }
   
   .wish-card.hover-effect:hover {
-    transform: translateY(-10px);  
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);  
-  }
-  
-  .wish-card.hover-effect:hover .wish-card-body {
-    opacity: 1;  
-    transform: translateY(0);  
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
   
   .wish-button {
     display: flex;
-    gap: 10px; 
+    gap: 10px;
   }
   
   .btn {
@@ -67,43 +59,50 @@
   }
   
   .btn-watch {
-    background: linear-gradient(90deg, #00bdff, #0079ff);
+    background-color: rgb(0, 0, 0, 1);
+    border: 2px solid white;
     color: white;
+    display: flex;
+    gap: 10px;
   }
   
   .btn-watch:hover {
+    background-color: white;
+    border: 2px solid white;
     color: black;
   }
-
+  
   .btn-wishlist {
-    background: linear-gradient(90deg, #00bdff, #0079ff); 
+    background-color: rgb(0, 0, 0, 1);
+    border: 2px solid white;
     color: white;
   }
-
+  
   .btn-wishlist:hover {
+    background-color: white;
+    border: 2px solid white;
     color: black;
   }
   
   .btn-wishlist .fa-heart {
-    color: white; 
+    color: white;
     transition: color 0.3s ease;
   }
-
+  
   .wish-toggle:checked + .fa-heart {
-    color: red; 
+    color: red;
   }
-
+  
   .message-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50px; 
-    width: 300px; 
+    height: 50px;
+    width: 300px;
     text-align: center;
-    margin: auto; 
-    border-radius: 5px; 
+    margin: auto;
+    border-radius: 5px;
   }
-
   
   .watchlist-heading {
     color: white;
@@ -115,8 +114,7 @@
     display: inline-block;
     margin-bottom: 20px;
   }
-
- 
+  
   .no-movies {
     color: white;
     font-size: 20px;
@@ -125,38 +123,28 @@
     font-weight: bold;
   }
   
-  @media (min-width: 768px) {
-    .col-md-3 {
-      {% comment %} width: 50%; {% endcomment %}
-    }
-  }
-
   @media (min-width: 992px) and (max-width: 1199px) {
-   
     .col-md-3 {
       width: 33%;
     }
-
+  
     .wish-card-img-top {
-      width: 100%;  
+      width: 100%;
       height: 100%;
-      {% comment %} object-fit: cover; {% endcomment %}
     }
   }
-
+  
   @media (min-width: 1200px) and (max-width: 1399px) {
-   
     .col-md-3 {
       width: 33%;
     }
-
+  
     .wish-card-img-top {
-      width: 100%;  
+      width: 100%;
       height: 100%;
-      {% comment %} object-fit: cover; {% endcomment %}
     }
   }
-
+  
 
 </style>
 
@@ -180,25 +168,41 @@
   <div class="row">
     {% for item in movies %}
     <div class="col-md-3 mb-3">
-        <a href="">
-            <div class="wish-card hover-effect">
-                <img src="{{ item.films.movie_image.url }}" class="wish-card-img-top" alt="Card Image">
-                <div class="wish-card-body">
-                    <h5 class="wish-card-title">{{ item.films.name }}</h5>
-                    <div class="wish-button">
-                        <a href="">
-                            <button class="btn btn-watch"><i class="fa-solid fa-film"></i> Watch Trailer</button>
-                        </a>
-                        <a href="{% url 'watchlistremove' item.films.id %}">
-                            <label class="btn btn-wishlist card-wish">
-                              <i class="fa-solid fa-heart" style="color: red;"></i> Remove
-                            </label>
-                        </a>
-                    </div>
+        <div class="wish-card hover-effect">
+            <img src="{{ item.films.movie_image.url }}" class="wish-card-img-top" alt="Card Image">
+            <div class="wish-card-body">
+                <h5 class="wish-card-title" style="color:white">{{ item.films.name }}</h5>
+                <div class="wish-button">
+                    <button class="btn btn-watch" data-bs-toggle="modal" data-bs-target="#trailerModal{{ item.films.id }}">
+                      <i class="fa-solid fa-play"></i> Play
+                    </button>
+                    <a href="{% url 'watchlistremove' item.films.id %}">
+                        <label class="btn btn-wishlist card-wish">
+                          <i class="fa-solid fa-heart" style="color: red;"></i>
+                        </label>
+                    </a>
                 </div>
             </div>
-        </a>
+        </div>
     </div>
+
+    <!-- Modal for movie trailer -->
+    <div class="modal fade" id="trailerModal{{ item.films.id }}" tabindex="-1" aria-labelledby="trailerModalLabel{{ item.films.id }}" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="trailerModalLabel{{ item.films.id }}">{{ item.films.name }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <video controls style="width: 100%;">
+              <source src="{{ item.films.video.url }}" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+
     {% endfor %}
   </div>
   {% else %}
@@ -206,7 +210,5 @@
   {% endif %}
 
 </div>
-
-<br><br><br><br><br><br><br><br><br><br><br><br>
 
 {% endblock content %}

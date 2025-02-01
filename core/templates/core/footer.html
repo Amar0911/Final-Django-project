@@ -1,10 +1,12 @@
 {% block content %}
-{% endblock content %}
+
+
 <style>
  
   .wrapper {
     flex: 1;
 }
+
 
 .footer {
     background-color: #1c1c1e;
@@ -176,7 +178,7 @@
 
       <div class="col-lg-3 col-md-6 mb-4">
         <h5>Quick Links</h5>
-        <ul class="list-unstyled">
+        <ul class="list-unstyled" style="display: inline-block">
           <li><a href="{% url 'index' %}">Home</a></li>
           <li><a href="{% url 'about' %}">About</a></li>
           <li><a href="{% url 'contact' %}">Contact</a></li>
@@ -186,10 +188,10 @@
       <div class="col-lg-3 col-md-6 mb-4">
         <h5>Follow Us</h5>
         <div class="social-icons">
-          <a href="#"><i class="fa-brands fa-facebook"></i></a>
-          <a href="#"><i class="fa-brands fa-twitter"></i></a>
-          <a href="#"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://x.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+          <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@Amar_gupta/" target="_blank"><i class="fa-brands fa-youtube"></i></a>
         </div>
       </div>
     </div>
@@ -202,3 +204,4 @@
 
 
 
+{% endblock content %}

@@ -68,7 +68,17 @@
 
   .butt-group .btn {
     font-size: 0.7rem;
-    {% comment %} padding: 8px 15px; {% endcomment %}
+    padding: 5px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: 1px solid white;
+  }
+  
+  .butt-group .btn:hover {
+    background-color: white;
+    color: black;
   }
 
   .message-container {
@@ -82,7 +92,7 @@
     border-radius: 5px;
   }
 
-  /* Modal Styles */
+  
   .modal {
     z-index: 1050 !important;
   }
@@ -136,8 +146,44 @@
     background-color: #ffcc00; 
     color: #000; 
     text-decoration: none; 
+  }
 
 
+  .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; 
+    margin: 0 auto;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  line-height: 1;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.btn-close:hover {
+  color: red;
+  opacity: 1;
+  transform: scale(1.2); 
+}
+
+.btn-close::before {
+  content: '\2716'; 
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  display: inline-block;
+}
+
+.btn-close:not(:disabled):not(.disabled):focus {
+  box-shadow: none; 
+}
 
 
 </style>

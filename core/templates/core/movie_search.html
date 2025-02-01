@@ -1,14 +1,219 @@
 {% extends "core/base.html" %}
 {% load static %}
 
+{% block title %} Movie Search {% endblock title %}
+
 {% block content %}
 
-{% if query %}
+<style>
+  .movie-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
 
-  <h3>Search result for "{{query}}"</h3>
+  .card {
+    position: relative;
+    background: black;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 350px;
+  }
+  
+  .card-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    color: white;
+  }
+  
+  .card-title {
+    font-size: 25px;
+    font-weight: bold;
+    padding: 3px 5px;
+    border-radius: 10px;
+    color: white;
+  }
+  
+  .btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-watch {
+    background-color: rgb(0, 0, 0, 1);
+    border: 2px solid white;
+    color: white;
+  }
+  
+  .btn-watch:hover {
+    background-color: white;
+    border: 2px solid white;
+    color: black;
+  }
+  
+  .btn-wishlist {
+    background-color: rgb(0, 0, 0, 1);
+    border: 2px solid white;
+    color: white;
+  }
+  
+  .btn-wishlist:hover {
+    background-color: white;
+    border: 2px solid white;
+    color: black;
+  }
+  
 
-{% endif %}
+  .message-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 300px;
+    text-align: center;
+    margin: auto;
+    border-radius: 5px;
+  }
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+  .modal {
+    z-index: 1050 !important;
+  }
+
+  .modal-dialog {
+    margin-top: 10vh;
+  }
+
+  .modal-backdrop {
+    z-index: 1040 !important;
+  }
+
+  .modal-content {
+    background-color: #000;
+    color: #fff;
+    border-radius: 8px;
+  }
+
+  .btn-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    line-height: 1;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+  }
+
+  .btn-close:hover {
+    color: red;
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+ 
+  @media (min-width: 992px) and (max-width: 1199px) {
+   
+    .col-md-3 {
+      width: 33%;
+    }
+
+    .wish-card-img-top {
+      width: 100%;  
+      height: 100%;
+    }
+  }
+
+  @media (min-width: 1200px) and (max-width: 1399px) {
+   
+    .col-md-3 {
+      width: 33%;
+    }
+
+    .wish-card-img-top {
+      width: 100%;  
+      height: 100%;
+    }
+  }
+
+</style>
+
+<div class="container-fluid">
+
+  {% if messages %}
+    <div class="alert alert-danger message-container">
+        {% for message in messages %}
+            <span>{{ message }}</span>
+        {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if query %}
+  <br>
+    <h3 style="color: white; text-align: center;">Search Results for "{{ query }}"</h3>
+  <br>
+
+    {% if movie %}
+      <div class="movie-container">
+        {% for m in movie %}
+          <div class="card hover-effect">
+            <img src="{{ m.movie_image.url }}" class="card-img-top" alt="{{ m.name }}" style="width: 100%; height: 100%; object-fit: cover;">
+            
+            <div class="card-body">
+              <h5 class="card-title">{{ m.name }}</h5>
+              <div class="btn-group" style="gap: 15px;">
+                <button class="btn btn-watch" data-bs-toggle="modal" data-bs-target="#trailerModal{{ m.id }}" style="border-radius: 4px">
+                  <i class="fa-solid fa-film"></i> Watch Trailer
+                </button>
+                <a href="{% url 'watchlistadd' m.id %}">
+                  <button class="btn btn-wishlist">
+                    {% if is_in_watchlist.m.id %}
+                      <i class="fa-solid fa-heart" style="color: white;"></i>
+                    {% else %}
+                      <i class="fa-regular fa-heart" style="color:red;"></i> 
+                    {% endif %}
+                  </button>
+                </a>                
+              </div>
+            </div>
+          </div>
+          
+
+          <!-- for movie play -->
+          <div class="modal fade" id="trailerModal{{ m.id }}" tabindex="-1" aria-labelledby="trailerModalLabel{{ m.id }}" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="trailerModalLabel{{ m.id }}">{{ m.name }}</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <video controls style="width: 100%;">
+                    <source src="{{ m.video.url }}" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        {% endfor %}
+      </div>
+    {% else %}
+    <br><br><br>
+      <p style="color: white; text-align: center;">No movies found matching your search.</p>
+    {% endif %}
+  {% else %}
+    <p style="color: white; text-align: center;">Please enter a search query.</p>
+  {% endif %}
+  <br><br><br><br><br><br>
+</div>
+<br>
 
 {% endblock content %}

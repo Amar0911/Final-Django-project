@@ -58,10 +58,6 @@
     flex-direction: column;
   }
 
-  .movie-details:hover {
-    background: rgb(0, 0, 0, 0.3)
-  }
-  
   .movie-summary {
     max-width: 500px;
   }
@@ -145,6 +141,17 @@
     color: #fff;
     transition: background-color 0.3s ease;
   }
+
+  .card-watch {
+    background-color: rgb(0, 0, 0, 0.5);
+    border: 2px solid white;
+  }
+
+  .card-watch:hover {
+    background-color: white;
+    border: 2px solid white;
+    color: black;
+  }
   
   .btn-play {
     background-color: rgb(0, 0, 0, 0.5);
@@ -206,6 +213,43 @@
     }
   }
   
+
+  .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; 
+    margin: 0 auto;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  color: black;
+  font-size: 1.5rem;
+  line-height: 1;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.btn-close:hover {
+  color: red;
+  opacity: 1;
+  transform: scale(1.2); 
+}
+
+.btn-close::before {
+  content: '\2716'; 
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+  display: inline-block;
+}
+
+.btn-close:not(:disabled):not(.disabled):focus {
+  box-shadow: none; 
+}
+
 </style>
 
 <br><br>
@@ -271,6 +315,8 @@
       </div>
     </div>
   </div>
+
+  
 
   <br><br>
 
