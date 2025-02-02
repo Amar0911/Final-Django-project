@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm,PasswordChangeForm,UserChangeForm
 from django.contrib.auth.models import User
 from .models import Contact
+from django.core.exceptions import ValidationError
+
 
 
 
@@ -24,6 +26,16 @@ class Registerform(UserCreationForm):
         widgets= {'username':forms.TextInput(attrs={'class':'form-control'}),
                   'email':forms.TextInput(attrs={'class':'form-control'}),
                   }
+        
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        
+        if not username[0].isalpha():
+            raise ValidationError("Username must start with an alphabetic character.")
+        
+        return username
+    
+
         
         
 class AuthenticateForm(AuthenticationForm):

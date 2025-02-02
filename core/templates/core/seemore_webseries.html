@@ -67,8 +67,8 @@
   }
 
   .butt-group .btn {
-    font-size: 0.7rem;
-    padding: 5px;
+    padding: 8px 16px;
+    font-size: 14px;
     border-radius: 5px;
     transition: all 0.3s ease;
     background-color: rgba(0, 0, 0, 0.7);
@@ -92,6 +92,7 @@
     border-radius: 5px;
   }
 
+  /* movie css */
   
   .modal {
     z-index: 1050 !important;
@@ -215,11 +216,11 @@
             <h5 class="card-title">{{ ws.name }}</h5>
             <div class="butt-group">
               <button class="btn btn-watch card-watch" data-bs-toggle="modal" data-bs-target="#trailerModal{{ ws.id }}">
-                <i class="fa-solid fa-film"></i> Watch Trailer
+                <i class="fa-solid fa-play"></i> Play
               </button>
               <a href="{% url 'watchlistadd' ws.id %}">
                 <button class="btn btn-wishlist card-wish">
-                  <i class="fa-regular fa-heart" style="color: red;"></i> Watchlist
+                  <i class="fa-regular fa-heart" style="color: red;"></i> 
                 </button>
               </a>
             </div>

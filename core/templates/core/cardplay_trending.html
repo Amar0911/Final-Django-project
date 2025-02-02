@@ -188,24 +188,46 @@
 
 
   @media (max-width: 768px) {
-    #title {
-        font-size: 1.5rem;
+    .carousel-item a img {
+      height: 300px;
+    }
+
+    .carousel-caption h2 {
+      font-size: 1rem;
+      color: white;
+      font-weight: bold;
+      margin-bottom: 10px;
     }
   
-    .movie-summary p {
-        font-size: 0.9rem;
+    .carousel-caption .soon {
+      font-size: 0.8rem;
+      padding: 12px 25px;
     }
-  
-    .movie-info {
-        font-size: 0.8rem;
-    }
-  
-    .button-group .btn {
-        font-size: 0.9rem;
-        padding: 8px 15px;
-    }
+
+
   }
 
+  @media (max-width: 480px) {
+    .carousel-item a img {
+      height: 250px;
+    }
+
+    .carousel-caption h2 {
+      font-size: 1rem;
+      color: white;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  
+    .carousel-caption .soon {
+      font-size: 0.6rem;
+      padding: 12px 25px;
+    }
+
+
+  }
+
+  /*msg*/
   .message-container {
     display: flex;
     justify-content: center;
@@ -287,9 +309,9 @@
                 </div>
                 <div class="button-group">
                   <button class="btn btn-watch card-watch" data-bs-toggle="modal" data-bs-target="#trailerModal{{ tr.id }}">
-                    <i class="fa-solid fa-film"></i> Watch Trailer
+                    <i class="fa-solid fa-play"></i> Play Now
                   </button>
-                    <a href="{% url "watchlistadd" tr.id %}" class="btn btn-wishlist"><i class="fa-regular fa-heart"></i> Watchlist</a>
+                    <a href="{% url "watchlistadd" tr.id %}" class="btn btn-wishlist"><i class="fa-regular fa-heart"></i> My List</a>
                 </div> 
             </div>
         </div> 

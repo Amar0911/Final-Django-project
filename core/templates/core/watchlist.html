@@ -62,8 +62,6 @@
     background-color: rgb(0, 0, 0, 1);
     border: 2px solid white;
     color: white;
-    display: flex;
-    gap: 10px;
   }
   
   .btn-watch:hover {
@@ -121,6 +119,101 @@
     text-align: center;
     margin-top: 50px;
     font-weight: bold;
+  }
+
+  
+  /*movie css*/
+
+  .modal {
+    z-index: 1050 !important;
+  }
+
+  .modal-backdrop {
+    z-index: 1040 !important;
+  }
+
+  .modal-dialog {
+    margin-top: 10vh;
+  }
+
+  .modal-content {
+    background-color: #000;
+    color: #fff;
+    border-radius: 8px;
+  }
+
+  .modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    line-height: 1;
+    opacity: 0.8;
+  }
+
+  .btn-close:hover {
+    color: red;
+    opacity: 1;
+  }
+
+  .modal-body video {
+    border-radius: 8px;
+  }
+
+  .modal-body a {
+    color: #ffcc00; 
+    text-decoration: none; 
+    font-weight: bold; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    transition: all 0.3s ease; 
+  }
+
+  .modal-body a:hover {
+    background-color: #ffcc00; 
+    color: #000; 
+    text-decoration: none; 
+  }
+
+
+  .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; 
+    margin: 0 auto;
+  }
+
+  .btn-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    line-height: 1;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+  }
+
+  .btn-close:hover {
+    color: red;
+    opacity: 1;
+    transform: scale(1.2); 
+  }
+
+  .btn-close::before {
+    content: '\2716'; 
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    display: inline-block;
+  }
+
+  .btn-close:not(:disabled):not(.disabled):focus {
+    box-shadow: none; 
   }
   
   @media (min-width: 992px) and (max-width: 1199px) {
@@ -186,7 +279,7 @@
         </div>
     </div>
 
-    <!-- Modal for movie trailer -->
+    <!-- for movie -->
     <div class="modal fade" id="trailerModal{{ item.films.id }}" tabindex="-1" aria-labelledby="trailerModalLabel{{ item.films.id }}" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
