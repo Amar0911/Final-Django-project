@@ -110,25 +110,36 @@ def log_out(request):
 ############################################################## Profile ###############################################################
 
 
-    
+
 def profile(request):
-    if request.user.is_authenticated:
-        if request.method =='POST':
-            if request.user.is_superuser == True:
-                adm = AdminProfileForm(request.POST, instance = request.user)
-            else:
-                adm = UserProfileForm(request.POST, instance = request.user)
-            if adm.is_valid():
-                adm.save()
-                messages.success(request,'Profile Updated Successfully!!')
+    user = request.user
+
+    try:
+        active_subscription = UserSubscription.objects.get(user=user, is_active=True)
+    except UserSubscription.DoesNotExist:
+        active_subscription = None
+
+    if request.method == 'POST':
+        if user.is_superuser:
+            adm = AdminProfileForm(request.POST, instance=user)
         else:
-            if request.user.is_superuser == True:
-                adm = AdminProfileForm(instance = request.user)
-            else:
-                adm = UserProfileForm(instance = request.user)
-        return render(request,'core/profile.html', {'name': request.user, 'adm': adm})
+            adm = UserProfileForm(request.POST, instance=user)
+        
+        if adm.is_valid():
+            adm.save()
+            messages.success(request, 'Profile Updated Successfully!')
+            return redirect('profile') 
+
     else:
-        return redirect('login')
+        if user.is_superuser:
+            adm = AdminProfileForm(instance=user)
+        else:
+            adm = UserProfileForm(instance=user)
+
+    return render(request, 'core/profile.html', {
+        'adm': adm,
+        'active_subscription': active_subscription
+    })
 
 ############################################################# About ########################################################
 
@@ -446,7 +457,6 @@ def payment_success(request):
         messages.error(request, 'Invalid subscription details.')
         return redirect('subscription')
 
-    # Check user have any subscription
     user_subscription = UserSubscription.objects.filter(id=subscription_id, user=request.user).first()
     if not user_subscription:
         messages.error(request, 'Subscription not found.')
@@ -455,9 +465,18 @@ def payment_success(request):
     payment_confirmed = True  
 
     if payment_confirmed:
-        # Once the payment confirmed Activate the subscription
         user_subscription.is_active = True
         user_subscription.save()
+
+        # Render the HTML email message using the template
+        subject = "Subscription Payment Successful"
+        message = render_to_string('core/subscription_email.html', {
+            'user': request.user,
+            'subscription': user_subscription,
+        })
+
+        recipient_email = request.user.email
+        send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [recipient_email], html_message=message)
 
         context = {
             'subscription': user_subscription,
@@ -467,7 +486,8 @@ def payment_success(request):
     else:
         messages.error(request, 'Payment could not be verified. Please try again.')
         return redirect('subscription')
-
+    
+    
 ############################################ Payment Failed #############################################
 
 def payment_failed(request):

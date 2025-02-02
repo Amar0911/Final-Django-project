@@ -63,6 +63,9 @@ class SubscriptionPlan(models.Model):
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     duration = models.IntegerField(help_text="Duration in days")
+    detail1 = models.CharField(max_length=200,default='')
+    detail2 = models.CharField(max_length=200,default='')
+    detail3 = models.CharField(max_length=200,default='')
 
     def _str_(self):
         return self.name

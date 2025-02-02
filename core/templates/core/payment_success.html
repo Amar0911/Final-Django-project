@@ -6,23 +6,63 @@
     h1 {
         text-align: center;
         color: white;
-        margin-top: 130px;
+        margin-top: 80px;
+        font-size: 36px;
+        font-weight: bold;
     }
 
-    .pay-para p {
+    .pay-para {
         text-align: center;
         color: white;
-        margin-top: 120px;
+        margin-top: 40px;
+        max-width: 650px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 18px;
+        line-height: 1.6;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
     }
 
+    .btn-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+        margin-bottom: 80px; /* Extra space before footer */
+    }
+
+    .btn-home {
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        color: white;
+        padding: 14px 30px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: bold;
+        transition: 0.3s ease-in-out;
+        box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+    }
+
+    .btn-home:hover {
+        background: linear-gradient(135deg, #0056b3, #003d80);
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(0, 86, 179, 0.4);
+    }
 </style>
 
-<h1>Payment Successfull</h1>
+<h1>🎉 Payment Successful! 🎉</h1>
 
 <div class="pay-para">
     <p>Thank you for joining our cinematic journey! Your all-access pass to epic movies and exclusive stories starts now 
         — enjoy the magic!</p>
-        <br>
+    <p>With your new subscription, dive into a world of entertainment, explore unlimited movies, and experience premium content without interruptions.</p>
+    <p>We are thrilled to have you on board! If you have any questions or need assistance, feel free to reach out to our support team.</p>
+</div>
+
+<div class="btn-container">
+    <a href="{% url 'index' %}" class="btn-home">🎬 Go to Home</a>
 </div>
 
 {% endblock content %}

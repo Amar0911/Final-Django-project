@@ -15,6 +15,8 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
+  
+
   .card-body {
     position: absolute;
     bottom: 0;
@@ -28,6 +30,8 @@
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
+
+
   .card-title {
     font-size: 20px;
     font-weight: bold;
@@ -38,35 +42,49 @@
     color: white;
   }
 
+
+
   .card-body .butt-group {
     display: flex;
     gap: 10px;
   }
+
+
 
   .card-body .btn {
     font-size: 14px;
     padding: 5px;
   }
 
+
+
   .card.hover-effect:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
+
+
 
   .card.hover-effect:hover .card-body {
     opacity: 1;
     transform: translateY(0);
   }
 
+
+
   .card-wish {
     background-color: rgb(0, 0, 0, 0.7);
     color: white;
   }
 
+
+
   .card-wish:hover {
     background-color: white;
     color: black;
   }
+
+
 
   .butt-group .btn {
     padding: 8px 16px;
@@ -77,11 +95,15 @@
     color: white;
     border: 1px solid white;
   }
+
+
   
   .butt-group .btn:hover {
     background-color: white;
     color: black;
   }
+
+
   .message-container {
     display: flex;
     justify-content: center;
@@ -230,12 +252,12 @@
           </div>
         </div>
 
-        <!-- Modal for Trailer -->
+        <!-- for movie -->
         <div class="modal fade" id="trailerModal{{ im.id }}" tabindex="-1" aria-labelledby="trailerModalLabel{{ im.id }}" aria-hidden="true">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="trailerModalLabel{{ im.id }}">{{ im.name }} - Trailer</h5>
+                <h5 class="modal-title" id="trailerModalLabel{{ im.id }}">{{ im.name }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">

@@ -6,7 +6,7 @@
 
 <style>
     
-.container {
+  .container {
     width: 100%;
     height: 500px;
     overflow: hidden;
@@ -31,18 +31,8 @@
     height: 100%;
   }
 
-  .movie-image::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 20%; 
-    background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-    pointer-events: none; 
-  }
 
-  
+
   .movie-image img {
     width: 100%;
     height: 100%;
@@ -58,7 +48,7 @@
     flex-direction: column;
   }
 
- 
+  
   
   .movie-summary {
     max-width: 500px;
@@ -114,7 +104,7 @@
   .movie-summary h3 #rating {
     background: yellow;
     color: #000;
-    padding: 0px 3px;
+    padding: 2px 5px;
     margin: 0px 5px 0px 5px;
     font-weight: 300;
     font-size: 15px;
@@ -182,6 +172,92 @@
   }
   
 
+
+
+  /* Responsive Design */
+
+
+  @media (max-width: 786px) {
+    .container {
+      height: auto;
+      padding: 10px;
+    }
+  
+    .movie-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+    }
+  
+    .movie-image {
+      width: 100%;
+      height: auto;
+    }
+  
+    .movie-image img {
+      object-fit: cover;
+    }
+  
+    .movie-details {
+      position: static;
+      padding: 15px;
+      width: 100%;
+      text-align: center;
+    }
+  
+    #title {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+  
+    .movie-summary p {
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+  
+    .movie-info {
+      font-size: 0.8rem;
+    }
+  
+    h6, #genre, #yeear {
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+  
+    .movie-summary h3 {
+      font-size: 12px;
+      justify-content: center;
+    }
+  
+    .movie-summary h3 #rating {
+      font-size: 12px;
+      padding: 2px 4px;
+    }
+  
+    .button-group {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+  
+    .btn {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      width: auto;
+      min-width: 120px;
+      text-align: center;
+      justify-content: center;
+    }
+  }
+  
+  
+
+  /*msg*/
+
   .message-container {
     display: flex;
     justify-content: center;
@@ -194,26 +270,55 @@
   }
   
 
-
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    #title {
-        font-size: 1.5rem;
-    }
+  /*movie css*/
   
-    .movie-summary p {
-        font-size: 0.9rem;
-    }
-  
-    .movie-info {
-        font-size: 0.8rem;
-    }
-  
-    .button-group .btn {
-        font-size: 0.9rem;
-        padding: 8px 15px;
-    }
+  .modal-dialog {
+    margin-top: 10vh;
   }
+
+  .modal-content {
+    background-color: #000;
+    color: #fff; 
+    border-radius: 8px;
+  }
+
+  .modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    line-height: 1;
+    opacity: 0.8;
+  }
+
+  .btn-close:hover {
+    color: red;
+    opacity: 1;
+  }
+
+  .modal-body video {
+    border-radius: 8px;
+  }
+
+  .modal-body a {
+    color: #ffcc00; 
+    text-decoration: none; 
+    font-weight: bold; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    transition: all 0.3s ease; 
+  }
+
+  .modal-body a:hover {
+    background-color: #ffcc00; 
+    color: #000; 
+    text-decoration: none; 
+  }
+
 
   .modal-dialog {
     display: flex;
@@ -226,7 +331,7 @@
 .btn-close {
   background: none;
   border: none;
-  color: black;
+  color: white;
   font-size: 1.5rem;
   line-height: 1;
   opacity: 0.8;
@@ -243,13 +348,14 @@
   content: '\2716'; 
   font-size: 1.5rem;
   font-weight: bold;
-  color: black;
+  color: white;
   display: inline-block;
 }
 
 .btn-close:not(:disabled):not(.disabled):focus {
   box-shadow: none; 
 }
+
   
 </style>
 
@@ -281,13 +387,13 @@
                     <h6>Movie Vista Original</h6> 
                     <h5 id="genre">{{am.genre}}</h5>
                     <h4 id="yeear">{{am.re_year}}</h4>
-                    <h3><span id="rating">IMDB</span> <i class="fa-solid fa-star"></i><span style="font-size: 20px; padding: 0 5px;">{{am.rating}}</span></h3>
+                    <h3><span id="rating">IMDB</span> <i class="fa-solid fa-star" style="color: yellow;"></i><span style="font-size: 20px; padding: 0 5px; color: white">{{am.rating}}</span></h3>
                 </div>
                 <div class="button-group">
                   <button class="btn btn-watch card-watch" data-bs-toggle="modal" data-bs-target="#trailerModal{{ am.id }}">
-                    <i class="fa-solid fa-film"></i> Watch Trailer
+                    <i class="fa-solid fa-play"></i> Play Now
                   </button>
-                    <a href="{% url "watchlistadd" am.id %}" class="btn btn-wishlist"><i class="fa-regular fa-heart"></i> Watchlist</a>
+                    <a href="{% url "watchlistadd" am.id %}" class="btn btn-wishlist"><i class="fa-regular fa-heart"></i> My List</a>
                 </div> 
             </div>
         </div> 
@@ -295,19 +401,18 @@
   </div>
 
   
-  <!-- Modal for Trailer -->
+  <!-- for movie play -->
   <div class="modal fade" id="trailerModal{{ am.id }}" tabindex="-1" aria-labelledby="trailerModalLabel{{ am.id }}" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="trailerModalLabel{{ am.id }}">{{ am.name }} - Trailer</h5>
+          <h5 class="modal-title" id="trailerModalLabel{{ am.id }}">{{ am.name }}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           {% if has_active_subscription %}
               <video controls id="video{{ am.id }}" style="width: 100%;">
                   <source src="{{ am.video.url }}" type="video/mp4">
-                  Your browser does not support the video tag.
               </video>
           {% else %}
               <p>You need an active subscription to watch this video. <a href="{% url 'subscription' %}">Subscribe Now</a></p>

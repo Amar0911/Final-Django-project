@@ -5,7 +5,7 @@
 {% block content %}
 
 <style>
-
+    
     .profile {
         width: 100%;
         margin: 0 auto;
@@ -16,7 +16,7 @@
         background-color: #000; 
     } 
 
-    .text-center a {
+    .text-center a, .save-btn {
         border: 1px solid white;
         display: inline-block;
         padding: 8px;
@@ -27,7 +27,7 @@
         transition: all 0.3s;
     }
 
-    .text-center a:hover {
+    .text-center a:hover, .save-btn:hover {
         color: white;
         transform: translateY(-2px);
     }
@@ -51,16 +51,33 @@
     }
 
 
+    .message-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        width: 300px;
+        text-align: center;
+        margin: auto;
+        border-radius: 5px;
+      }
+
+
 </style>
 
-<!-- Profile -->
-
+{% if messages %}
+    <div class="alert alert-success message-container">
+        {% for message in messages %}
+            <span>{{ message }}</span>
+        {% endfor %}
+    </div>
+{% endif %}
 
 <div class="profile-page">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url "index" %}">
+                <a class="navbar-brand" href="{% url 'index' %}">
                     <h2><i class="bi bi-house"></i></h2>
                 </a>
             </div>
@@ -75,20 +92,37 @@
                         <i class="bi bi-person-circle"></i>
                     </div>
 
+                    
+                    {% if active_subscription %}
+                    <div class="list-group">
+                        <div class="list-group-item"><strong>Plan:</strong> {{ active_subscription.plan.name }}</div>
+                        <div class="list-group-item"><strong>End Date:</strong> {{ active_subscription.end_date }}</div>
+                    </div>
+                    {% else %}
+                    <p class="text-center text-warning">No Active Subscription Plan found.</p>
+                    {% endif %}
+
+                    <br>
+
+                   
                     <form action="" method="POST" class="profile-form">
                         {% csrf_token %}
                         {% for adm in adm %}
-                           <div class="form-group">
-                              <label class="form-label" for="{{adm.id_for_label}}">{{adm.label}}</label>
-                              {{adm}}
-                              {% if adm.errors %}
-                                 <div class="form-error">{{adm.errors}}</div>
-                              {% endif %}
-                           </div>
+                        <div class="form-group">
+                            <label class="form-label" for="{{ adm.id_for_label }}">{{ adm.label }}</label>
+                            {{ adm }}
+                            {% if adm.errors %}
+                            <div class="form-error">{{ adm.errors }}</div>
+                            {% endif %}
+                        </div>
                         {% endfor %}
+                        <br>
+                        <div class="text-center">
+                            <button type="submit" class="save-btn btn btn-outline-success">Save</button>
+                        </div>
                     </form>
 
-                    <br><br>
+                    <br>
 
                     <div class="text-center">
                         <a href="{% url 'changepassword' %}" class="btn btn-outline-danger">
@@ -100,6 +134,7 @@
         </div>
     </div>
 </div>
+
 <br><br><br><br>
 
 {% endblock content %}

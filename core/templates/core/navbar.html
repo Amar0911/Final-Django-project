@@ -69,9 +69,22 @@
 }
 
 @media (max-width: 768px) {
-    .form-c {
-        width: 150px;
-    }
+  
+  .form-c {
+      width: 140px;
+  }
+  
+  {% comment %} .icon {
+    flex-direction: row;
+    gap: 10px;
+    margin-left: 30px;
+  } {% endcomment %}
+
+
+  {% comment %} #logo {
+    margin-left: 13px;
+  } {% endcomment %}
+
 }
 
 
@@ -90,7 +103,7 @@
         <img src="{% static "core/image/M__2___1_-removebg-preview.png" %}" alt="MovieVista Logo" id="logo">
       </a>
 
-      <!-- Subscription button -->
+    
 
       <div class="mx-auto">
         {% if user.is_authenticated %}

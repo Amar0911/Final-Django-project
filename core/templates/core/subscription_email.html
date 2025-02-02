@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Payment Successful</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 20px;
+        }
+        h1 {
+            color: #007bff;
+        }
+        p {
+            margin: 10px 0;
+        }
+        .subscription-details {
+            background-color: #f0f8ff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .next-steps {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .footer {
+            margin-top: 30px;
+            color: #6c757d;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🎉 Subscription Payment Successful</h1>
+
+    <p>Dear {{ user.username }},</p>
+
+    <p>Congratulations! Your subscription has been successfully activated. 🎬✨</p>
+
+    <div class="subscription-details">
+        <h3>📜 Subscription Details:</h3>
+        <p><strong>Plan Name:</strong> {{ subscription.plan.name }}</p>
+        <p><strong>Price:</strong> ₹{{ subscription.plan.price }}</p>
+        <p><strong>Duration:</strong> {{ subscription.plan.duration }} days</p>
+        <p><strong>Start Date:</strong> {{ subscription.start_date|date:"Y-m-d" }}</p>
+        <p><strong>End Date:</strong> {{ subscription.end_date|date:"Y-m-d" }}</p>
+    </div>
+
+    <div class="next-steps">
+        <h3>🎥 What’s Next?</h3>
+        <p>🌟 Enjoy Unlimited Movies & Shows – From blockbuster hits to exclusive originals, your journey into entertainment begins now!</p>
+        <p>🍿 Binge-Watch Without Limits – Stream your favorite movies, TV shows, and exclusive content anytime, anywhere.</p>
+        <p>🎭 Discover New Releases – Be the first to watch newly released content and trending films.</p>
+        <p>📱 Watch on Any Device – Access your subscription on mobile, tablet, laptop, or smart TV seamlessly.</p>
+    </div>
+
+    <p>💡 Need Help? If you have any questions or need assistance, our support team is here for you. Contact us anytime!</p>
+
+    <p>Thank you for choosing MovieVistaFilm. Sit back, relax, and enjoy the magic of cinema! 🎬✨</p>
+
+    <div class="footer">
+        <p>Best Regards,</p>
+        <p>MovieVistaFilm Team</p>
+    </div>
+
+</body>
+</html>

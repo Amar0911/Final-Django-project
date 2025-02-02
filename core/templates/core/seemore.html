@@ -96,13 +96,13 @@
  
   /*movie css*/
 
-  .modal {
+  {% comment %} .modal {
     z-index: 1050 !important;
   }
 
   .modal-backdrop {
     z-index: 1040 !important;
-  }
+  } {% endcomment %}
 
   .modal-dialog {
     margin-top: 10vh;
@@ -110,7 +110,7 @@
 
   .modal-content {
     background-color: #000;
-    color: #fff;
+    color: #fff; 
     border-radius: 8px;
   }
 
@@ -191,7 +191,7 @@
 
 </style>
 
-<!-- Card Section -->
+
 <br>
 <div class="container-fluid">
 
@@ -234,7 +234,7 @@
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="trailerModalLabel{{ tr.id }}">{{ tr.name }} - Trailer</h5>
+                <h5 class="modal-title" id="trailerModalLabel{{ tr.id }}">{{ tr.name }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
