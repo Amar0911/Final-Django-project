@@ -468,7 +468,7 @@ def payment_success(request):
         user_subscription.is_active = True
         user_subscription.save()
 
-        # Render the HTML email message using the template
+        
         subject = "Subscription Payment Successful"
         message = render_to_string('core/subscription_email.html', {
             'user': request.user,
